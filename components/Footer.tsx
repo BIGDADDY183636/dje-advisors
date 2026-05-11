@@ -23,7 +23,7 @@ export default function Footer() {
             <p className="font-sans text-[0.82rem] text-canvas/50 leading-relaxed">
               Independent tax, accounting, and advisory.
               <br />
-              Chicago &amp; Glenview, IL.
+              Offices in Chicago &amp; Glenview.
             </p>
           </div>
 

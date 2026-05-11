@@ -2,8 +2,8 @@
 
 @theme {
   /* ── Palette ──────────────────────────────────────── */
-  --color-canvas:       #ffffff;
-  --color-canvas-alt:   #f7f5f0;
+  --color-canvas:       #faf8f3;   /* warm cream — main bg               */
+  --color-canvas-alt:   #f2ede6;   /* deeper cream — alternate sections  */
   --color-navy:         #1a2942;
   --color-navy-mid:     #2d3e5c;
   --color-border:       #e5e1d6;
@@ -20,7 +20,7 @@ html {
 }
 
 body {
-  background-color: #ffffff;
+  background-color: #faf8f3;
   color: #1a2942;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -29,4 +29,32 @@ body {
 ::selection {
   background-color: #f0e7d2;
   color: #1a2942;
+}
+
+/* ── Hero breathing gradient ──────────────────────────
+   CSS-only, two offset radial blobs that pulse at
+   different rates and phases for a living feel.        */
+@keyframes hero-breathe-a {
+  0%, 100% { opacity: 0.50; transform: scale(1)    translate(0,    0   ); }
+  50%       { opacity: 0.80; transform: scale(1.10) translate(-3%, 2%  ); }
+}
+@keyframes hero-breathe-b {
+  0%, 100% { opacity: 0.35; transform: scale(1.06) translate(0,    0   ); }
+  50%       { opacity: 0.18; transform: scale(0.94) translate( 3%, -3% ); }
+}
+
+.hero-breathe-a {
+  animation: hero-breathe-a 11s ease-in-out infinite;
+}
+.hero-breathe-b {
+  animation: hero-breathe-b 15s ease-in-out infinite 3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-breathe-a,
+  .hero-breathe-b {
+    animation: none;
+    opacity: 0.55;
+    transform: none;
+  }
 }

@@ -5,14 +5,14 @@ import { team } from "@/lib/team";
 import { blogPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "DJE Advisors — Tax & Accounting | Chicago",
+  title: "DJE Advisors — Tax, Accounting & Advisory",
 };
 
 const services = [
   {
     num: "01",
     title: "Tax Preparation",
-    desc: "Individual, trust, and business returns prepared with precision. We file on time, every year.",
+    desc: "Individual, trust, and business returns prepared with precision. Filed on time, every year.",
   },
   {
     num: "02",
@@ -27,7 +27,7 @@ const services = [
   {
     num: "04",
     title: "Estate & Trust",
-    desc: "Coordinated planning for high-net-worth families: trusts, gifting strategies, and multi-generational structure.",
+    desc: "Coordinated planning for families: trusts, gifting strategies, and multi-generational structure.",
   },
 ];
 
@@ -57,117 +57,123 @@ const offices = [
 export default function Home() {
   return (
     <main>
-      {/* ── 1. Hero ─────────────────────────────────────── */}
-      <section className="relative min-h-[92vh] flex flex-col justify-end bg-navy overflow-hidden">
-        {/* Photo placeholder — swap for <Image> when available */}
+      {/* ── 1. Hero ─────────────────────────────────────────
+          Full-viewport navy. Two slow-breathing radial blobs
+          handled by CSS classes in globals.css.             */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-navy">
+        {/* Blob A — warm gold glow, upper-right */}
         <div
-          className="absolute inset-0"
+          className="hero-breathe-a absolute w-[750px] h-[750px] -top-40 -right-40 rounded-full pointer-events-none"
           style={{
             background:
-              "linear-gradient(160deg, #0d1a2d 0%, #1a2942 55%, #243657 100%)",
+              "radial-gradient(circle, rgba(180,138,62,0.13) 0%, transparent 65%)",
           }}
           aria-hidden="true"
-        >
-          {/* Subtle grid texture */}
-          <div
-            className="absolute inset-0 opacity-[0.04]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
-              backgroundSize: "72px 72px",
-            }}
-          />
-          <p className="absolute bottom-5 right-6 font-sans text-[0.6rem] text-white/15 italic">
-            Photo placeholder — Chicago skyline or office interior
-          </p>
-        </div>
+        />
+        {/* Blob B — lighter navy depth, lower-left */}
+        <div
+          className="hero-breathe-b absolute w-[900px] h-[900px] -bottom-48 -left-48 rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(45,62,92,0.65) 0%, transparent 65%)",
+          }}
+          aria-hidden="true"
+        />
 
-        {/* Hero content */}
-        <div className="relative z-10 max-w-5xl mx-auto px-6 pt-[120px] pb-24 w-full">
+        {/* Content */}
+        <div className="relative z-10 max-w-4xl mx-auto px-6 py-36 text-center">
           <Reveal>
-            <p className="font-sans text-[0.68rem] tracking-[0.28em] uppercase text-gold font-medium mb-6">
+            <p className="font-sans text-[0.68rem] tracking-[0.28em] uppercase text-gold/80 font-medium mb-8">
               Tax · Accounting · Advisory
             </p>
           </Reveal>
+
           <Reveal delay={0.07}>
             <h1
-              className="font-display font-light text-white leading-[1.08] mb-7"
-              style={{ fontSize: "clamp(2.8rem, 6vw, 5.2rem)" }}
+              className="font-display font-light text-white leading-[1.1] mx-auto mb-7"
+              style={{
+                fontSize: "clamp(2.6rem, 6vw, 4.8rem)",
+                maxWidth: "18ch",
+              }}
             >
-              For those who&apos;ve built
-              <br />
-              something worth protecting.
+              Tax, planning, and the person on the other end of the phone.
             </h1>
           </Reveal>
+
           <Reveal delay={0.13}>
-            <p className="font-sans text-[0.95rem] text-white/55 max-w-lg leading-relaxed mb-10">
-              DJE Advisors is an independent CPA firm serving high-net-worth
-              families and closely held businesses in Chicago and Glenview. We
-              work like partners, not just preparers.
+            <p
+              className="font-sans font-light text-white/55 mx-auto leading-relaxed mb-12"
+              style={{ fontSize: "clamp(0.92rem, 1.6vw, 1.05rem)", maxWidth: "44ch" }}
+            >
+              An independent tax and accounting firm. We work with business
+              owners, families, and individuals across Chicago, Glenview, and
+              beyond.
             </p>
           </Reveal>
+
           <Reveal delay={0.18}>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/contact"
-                className="inline-block font-sans text-[0.82rem] font-medium bg-gold text-white px-7 py-3.5 rounded-sm hover:opacity-90 transition-opacity duration-150"
-              >
-                Schedule a consultation →
-              </Link>
-              <Link
-                href="/services"
-                className="inline-block font-sans text-[0.82rem] font-medium border border-white/25 text-white/80 px-7 py-3.5 rounded-sm hover:border-white/50 hover:text-white transition-colors duration-150"
-              >
-                Our services
-              </Link>
-            </div>
+            <Link
+              href="/contact"
+              className="inline-block font-sans font-semibold bg-gold text-navy rounded-sm hover:opacity-90 transition-opacity duration-150"
+              style={{
+                fontSize: "1rem",
+                letterSpacing: "0.01em",
+                padding: "1.1rem 3rem",
+              }}
+            >
+              Contact Us Today
+            </Link>
           </Reveal>
         </div>
       </section>
 
       {/* ── 2. Credentials strip ────────────────────────── */}
       <section className="bg-canvas border-b border-border py-5 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            {credentials.map((c, i) => (
-              <span key={c} className="flex items-center gap-5">
-                <span className="font-sans text-[0.75rem] text-navy/50 tracking-wide">
-                  {c}
-                </span>
-                {i < credentials.length - 1 && (
-                  <span className="text-border select-none">·</span>
-                )}
+        <div className="max-w-5xl mx-auto flex flex-wrap justify-center items-center gap-x-5 gap-y-2">
+          {credentials.map((c, i) => (
+            <span key={c} className="flex items-center gap-5">
+              <span className="font-sans text-[0.75rem] text-navy/45 tracking-wide">
+                {c}
               </span>
-            ))}
-          </div>
+              {i < credentials.length - 1 && (
+                <span className="text-border select-none">·</span>
+              )}
+            </span>
+          ))}
         </div>
       </section>
 
       {/* ── 3. Services ─────────────────────────────────── */}
       <section className="bg-canvas py-28 px-6 border-b border-border">
         <div className="max-w-5xl mx-auto">
-          <Reveal>
-            <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-gold font-medium mb-5">
-              What we do
-            </p>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <h2
-              className="font-display font-light text-navy leading-tight mb-16"
-              style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)" }}
-            >
-              Services built around your situation,
-              <br className="hidden md:block" /> not a checklist.
-            </h2>
-          </Reveal>
+          {/* Centered header */}
+          <div className="text-center mb-16">
+            <Reveal>
+              <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-gold font-medium mb-5">
+                What we do
+              </p>
+            </Reveal>
+            <Reveal delay={0.06}>
+              <h2
+                className="font-display font-light text-navy leading-tight mx-auto"
+                style={{
+                  fontSize: "clamp(2rem, 4vw, 3.2rem)",
+                  maxWidth: "28ch",
+                }}
+              >
+                Services built around your situation, not a checklist.
+              </h2>
+            </Reveal>
+          </div>
 
+          {/* Left-aligned service rows */}
           <div className="divide-y divide-border">
             {services.map((s, i) => (
               <Reveal key={s.num} delay={0.05 + i * 0.06}>
                 <div className="py-8 grid grid-cols-[3rem_1fr] md:grid-cols-[3rem_1fr_2fr] gap-x-8 gap-y-2 items-baseline">
                   <span
-                    className="font-display font-light text-gold/50 leading-none"
-                    style={{ fontSize: "clamp(1.4rem, 2.5vw, 1.8rem)" }}
+                    className="font-display font-light text-gold/45 leading-none"
+                    style={{ fontSize: "1.8rem" }}
                   >
                     {s.num}
                   </span>
@@ -186,7 +192,7 @@ export default function Home() {
           </div>
 
           <Reveal delay={0.35}>
-            <div className="mt-10">
+            <div className="mt-10 text-center">
               <Link
                 href="/services"
                 className="font-sans text-[0.82rem] font-medium text-gold hover:text-navy transition-colors duration-150"
@@ -217,7 +223,7 @@ export default function Home() {
                 you can actually afford.
               </h2>
             </Reveal>
-            <Reveal delay={0.1}>
+            <Reveal delay={0.10}>
               <p className="font-sans text-[0.9rem] text-white/55 leading-relaxed mb-5">
                 Most accounting firms see you once a year. We work with clients
                 year-round — answering questions as they come up, flagging
@@ -236,9 +242,9 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-4">
               {[
                 { stat: "Year-round", label: "client access" },
-                { stat: "CPA-led",   label: "on every engagement" },
-                { stat: "2",         label: "Illinois locations" },
-                { stat: "100%",      label: "placeholder stat" },
+                { stat: "CPA-led",    label: "on every engagement" },
+                { stat: "2",          label: "office locations" },
+                { stat: "100%",       label: "placeholder stat" },
               ].map(({ stat, label }) => (
                 <div
                   key={label}
@@ -263,34 +269,24 @@ export default function Home() {
       {/* ── 5. Team preview ─────────────────────────────── */}
       <section className="bg-canvas py-28 px-6 border-b border-border">
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <Reveal>
-                <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-gold font-medium mb-4">
-                  The team
-                </p>
-              </Reveal>
-              <Reveal delay={0.06}>
-                <h2
-                  className="font-display font-light text-navy"
-                  style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}
-                >
-                  People who know your name.
-                </h2>
-              </Reveal>
-            </div>
+          {/* Centered header */}
+          <div className="text-center mb-14">
+            <Reveal>
+              <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-gold font-medium mb-4">
+                The team
+              </p>
+            </Reveal>
             <Reveal delay={0.06}>
-              <Link
-                href="/team"
-                className="hidden md:block font-sans text-[0.8rem] font-medium text-gold hover:text-navy transition-colors duration-150"
+              <h2
+                className="font-display font-light text-navy mx-auto"
+                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", maxWidth: "24ch" }}
               >
-                Meet the team →
-              </Link>
+                People who know your name.
+              </h2>
             </Reveal>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {/* Placeholder portrait cards — swap for real <Image> later */}
             {team.map((member, i) => (
               <Reveal key={member.slug} delay={i * 0.08}>
                 <Link href={`/team/${member.slug}`} className="group block">
@@ -299,10 +295,7 @@ export default function Home() {
                       className="font-display font-light text-navy/25 select-none"
                       style={{ fontSize: "2.4rem" }}
                     >
-                      {member.name
-                        .split(" ")
-                        .map((w) => w[0])
-                        .join("")}
+                      {member.name.split(" ").map((w) => w[0]).join("")}
                     </span>
                   </div>
                   <p className="font-display font-medium text-navy text-[1rem] mb-0.5 group-hover:text-gold transition-colors duration-150">
@@ -314,57 +307,54 @@ export default function Home() {
                 </Link>
               </Reveal>
             ))}
-
-            {/* Extra placeholder slots until real team is added */}
+            {/* Fill remaining slots with visual placeholders */}
             {Array.from({ length: Math.max(0, 4 - team.length) }).map((_, i) => (
-              <Reveal key={`placeholder-${i}`} delay={(team.length + i) * 0.08}>
-                <div className="group block opacity-40">
+              <Reveal key={`ph-${i}`} delay={(team.length + i) * 0.08}>
+                <div className="opacity-35">
                   <div className="aspect-[3/4] bg-canvas-alt border border-dashed border-border rounded-sm flex items-center justify-center mb-4">
-                    <span className="font-sans text-[0.7rem] text-navy/30 italic">
-                      Photo placeholder
+                    <span className="font-sans text-[0.68rem] text-navy/30 italic">
+                      Photo
                     </span>
                   </div>
                   <p className="font-display font-medium text-navy/30 text-[1rem] mb-0.5">
-                    Team Member
+                    Coming soon
                   </p>
-                  <p className="font-sans text-[0.78rem] text-navy/25">
-                    Title placeholder
-                  </p>
+                  <p className="font-sans text-[0.78rem] text-navy/20">—</p>
                 </div>
               </Reveal>
             ))}
           </div>
+
+          <Reveal delay={0.36}>
+            <div className="mt-10 text-center">
+              <Link
+                href="/team"
+                className="font-sans text-[0.82rem] font-medium text-gold hover:text-navy transition-colors duration-150"
+              >
+                Meet the full team →
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ── 6. Insights ─────────────────────────────────── */}
       <section className="bg-canvas-alt py-24 px-6 border-b border-border">
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <Reveal>
-                <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-gold font-medium mb-4">
-                  Latest insights
-                </p>
-              </Reveal>
-              <Reveal delay={0.06}>
-                <h2
-                  className="font-display font-light text-navy"
-                  style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)" }}
-                >
-                  From the desk.
-                </h2>
-              </Reveal>
-            </div>
+          {/* Centered header */}
+          <div className="text-center mb-12">
+            <Reveal>
+              <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-gold font-medium mb-4">
+                Latest insights
+              </p>
+            </Reveal>
             <Reveal delay={0.06}>
-              <a
-                href="https://blog.djeadvisors.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden md:block font-sans text-[0.8rem] font-medium text-gold hover:text-navy transition-colors duration-150"
+              <h2
+                className="font-display font-light text-navy mx-auto"
+                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", maxWidth: "24ch" }}
               >
-                All articles →
-              </a>
+                From the desk.
+              </h2>
             </Reveal>
           </div>
 
@@ -402,31 +392,46 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
+
+          <Reveal delay={0.30}>
+            <div className="mt-10 text-center">
+              <a
+                href="https://blog.djeadvisors.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-sans text-[0.82rem] font-medium text-gold hover:text-navy transition-colors duration-150"
+              >
+                All articles →
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ── 7. Offices ──────────────────────────────────── */}
       <section className="bg-canvas py-24 px-6 border-b border-border">
         <div className="max-w-5xl mx-auto">
-          <Reveal>
-            <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-gold font-medium mb-5">
-              Locations
-            </p>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <h2
-              className="font-display font-light text-navy mb-14"
-              style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)" }}
-            >
-              Two offices. One team.
-            </h2>
-          </Reveal>
+          {/* Centered header */}
+          <div className="text-center mb-14">
+            <Reveal>
+              <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-gold font-medium mb-4">
+                Locations
+              </p>
+            </Reveal>
+            <Reveal delay={0.06}>
+              <h2
+                className="font-display font-light text-navy"
+                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)" }}
+              >
+                Two offices. One team.
+              </h2>
+            </Reveal>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {offices.map((office, i) => (
               <Reveal key={office.city} delay={0.06 + i * 0.08}>
                 <div className="border border-border rounded-sm p-8">
-                  {/* Map placeholder */}
                   <div className="h-32 bg-canvas-alt rounded-sm mb-6 flex items-center justify-center border border-border">
                     <p className="font-sans text-[0.68rem] text-navy/25 italic">
                       Map — {office.city}
@@ -464,12 +469,13 @@ export default function Home() {
               We&apos;ll tell you honestly whether we&apos;re the right fit.
             </p>
           </Reveal>
-          <Reveal delay={0.1}>
+          <Reveal delay={0.10}>
             <Link
               href="/contact"
-              className="inline-block font-sans text-[0.82rem] font-medium bg-gold text-white px-8 py-4 rounded-sm hover:opacity-90 transition-opacity duration-150"
+              className="inline-block font-sans font-semibold bg-gold text-navy rounded-sm hover:opacity-90 transition-opacity duration-150"
+              style={{ fontSize: "1rem", padding: "1.1rem 3rem" }}
             >
-              Schedule a consultation →
+              Contact Us Today
             </Link>
           </Reveal>
         </div>

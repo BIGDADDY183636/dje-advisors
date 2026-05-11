@@ -22,11 +22,11 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL("https://djeadvisors.com"),
   title: {
-    default: "DJE Advisors — Tax & Accounting | Chicago",
+    default: "DJE Advisors — Tax, Accounting & Advisory",
     template: "%s — DJE Advisors",
   },
   description:
-    "Independent tax, accounting, and advisory services in Chicago. Personalized guidance for families and businesses who have built something worth protecting.",
+    "An independent tax and accounting firm. Personalized guidance for business owners, families, and individuals — wherever you are.",
   openGraph: {
     siteName: "DJE Advisors",
     locale: "en_US",
