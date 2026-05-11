@@ -2,13 +2,13 @@
 
 @theme {
   /* ── Palette ──────────────────────────────────────── */
-  --color-canvas:          #faf8f5;   /* warm off-white — main bg           */
-  --color-canvas-alt:      #f2ede6;   /* deeper cream — alternate sections  */
-  --color-charcoal:        #232830;   /* primary text + nav bg              */
-  --color-charcoal-mid:    #3d4553;   /* hover states                       */
-  --color-border:          #ddd6cc;   /* dividers                           */
-  --color-burgundy:        #7a1f24;   /* accent                             */
-  --color-burgundy-pale:   #f5e6e7;   /* light burgundy tint for bg panels  */
+  --color-canvas:       #ffffff;
+  --color-canvas-alt:   #f7f5f0;
+  --color-navy:         #1a2942;
+  --color-navy-mid:     #2d3e5c;
+  --color-border:       #e5e1d6;
+  --color-gold:         #b48a3e;
+  --color-gold-pale:    #f0e7d2;
 
   /* ── Typography ──────────────────────────────────── */
   --font-display: var(--font-fraunces), Georgia, serif;
@@ -20,13 +20,13 @@ html {
 }
 
 body {
-  background-color: #faf8f5;
-  color: #232830;
+  background-color: #ffffff;
+  color: #1a2942;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background-color: #7a1f24;
-  color: #faf8f5;
+  background-color: #f0e7d2;
+  color: #1a2942;
 }
