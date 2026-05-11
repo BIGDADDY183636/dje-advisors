@@ -82,44 +82,32 @@ export default function Home() {
 
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto px-6 py-36 text-center">
+          {/* Typographic wordmark — swap for <Image> when logo is ready */}
           <Reveal>
-            <p className="font-sans text-[0.68rem] tracking-[0.28em] uppercase text-gold/80 font-medium mb-8">
-              Tax · Accounting · Advisory
+            <p
+              className="font-display font-normal text-white tracking-[0.05em] mb-7"
+              style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)" }}
+            >
+              DJE ADVISORS
             </p>
           </Reveal>
 
-          <Reveal delay={0.07}>
-            <h1
-              className="font-display font-light text-white leading-[1.1] mx-auto mb-7"
-              style={{
-                fontSize: "clamp(2.6rem, 6vw, 4.8rem)",
-                maxWidth: "18ch",
-              }}
-            >
-              Tax, planning, and the person on the other end of the phone.
-            </h1>
-          </Reveal>
-
-          <Reveal delay={0.13}>
+          {/* Tagline */}
+          <Reveal delay={0.08}>
             <p
               className="font-sans font-light text-white/55 mx-auto leading-relaxed mb-12"
-              style={{ fontSize: "clamp(0.92rem, 1.6vw, 1.05rem)", maxWidth: "44ch" }}
+              style={{ fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)", maxWidth: "38ch" }}
             >
-              An independent tax and accounting firm. We work with business
-              owners, families, and individuals across Chicago, Glenview, and
-              beyond.
+              Tax, planning, and the person on the other end of the phone.
             </p>
           </Reveal>
 
-          <Reveal delay={0.18}>
+          {/* Primary CTA */}
+          <Reveal delay={0.15}>
             <Link
               href="/contact"
               className="inline-block font-sans font-semibold bg-gold text-navy rounded-sm hover:opacity-90 transition-opacity duration-150"
-              style={{
-                fontSize: "1rem",
-                letterSpacing: "0.01em",
-                padding: "1.1rem 3rem",
-              }}
+              style={{ fontSize: "1rem", letterSpacing: "0.01em", padding: "1.1rem 3rem" }}
             >
               Contact Us Today
             </Link>
