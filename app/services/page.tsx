@@ -36,18 +36,17 @@ const services = [
 export default function ServicesPage() {
   return (
     <main className="pt-[72px]">
-      {/* Header */}
       <section className="bg-canvas py-24 px-6 border-b border-border">
         <div className="max-w-5xl mx-auto">
           <Reveal>
-            <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-gold font-medium mb-5">
+            <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-cyan font-medium mb-5">
               Services
             </p>
           </Reveal>
           <Reveal delay={0.06}>
             <h1
-              className="font-display font-light text-navy leading-tight"
-              style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)" }}
+              className="font-display text-ink leading-tight"
+              style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)", fontWeight: 400 }}
             >
               What we do.
             </h1>
@@ -55,25 +54,24 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Service list */}
       <section className="bg-canvas py-12 px-6">
         <div className="max-w-5xl mx-auto divide-y divide-border">
           {services.map((s, i) => (
             <Reveal key={s.num} delay={0.04 + i * 0.06}>
               <div className="py-12 grid grid-cols-[3.5rem_1fr] md:grid-cols-[3.5rem_1fr_2fr] gap-x-8 gap-y-3 items-baseline">
                 <span
-                  className="font-display font-light text-gold/50 leading-none"
-                  style={{ fontSize: "1.8rem" }}
+                  className="font-display text-cyan/45 leading-none"
+                  style={{ fontSize: "1.8rem", fontWeight: 400 }}
                 >
                   {s.num}
                 </span>
                 <h2
-                  className="font-display font-medium text-navy"
-                  style={{ fontSize: "clamp(1.1rem, 2vw, 1.35rem)" }}
+                  className="font-display text-ink"
+                  style={{ fontSize: "clamp(1.1rem, 2vw, 1.35rem)", fontWeight: 500 }}
                 >
                   {s.title}
                 </h2>
-                <p className="col-start-2 md:col-start-3 font-sans text-[0.9rem] text-navy/55 leading-relaxed">
+                <p className="col-start-2 md:col-start-3 font-sans text-[0.9rem] text-ink/55 leading-relaxed">
                   {s.description}
                 </p>
               </div>

@@ -1,23 +1,9 @@
 import type { Metadata } from "next";
-import { Fraunces, DM_Sans } from "next/font/google";
+// Century Gothic Pro + Helvetica Neue are licensed/system fonts —
+// no Google Fonts import needed. Font stacks are defined in globals.css.
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import "./globals.css";
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-fraunces",
-  display: "swap",
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  variable: "--font-dm-sans",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://djeadvisors.com"),
@@ -40,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${dmSans.variable}`}>
+    <html lang="en">
       <body className="antialiased">
         <Nav />
         {children}

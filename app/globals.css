@@ -2,17 +2,22 @@
 
 @theme {
   /* ── Palette ──────────────────────────────────────── */
-  --color-canvas:       #faf8f3;   /* warm cream — main bg               */
-  --color-canvas-alt:   #f2ede6;   /* deeper cream — alternate sections  */
-  --color-navy:         #1a2942;
-  --color-navy-mid:     #2d3e5c;
-  --color-border:       #e5e1d6;
-  --color-gold:         #b48a3e;
-  --color-gold-pale:    #f0e7d2;
+  --color-canvas:       #ffffff;
+  --color-canvas-alt:   #f6f6f4;
+  --color-ink:          #1D1D1B;
+  --color-border:       #e5e5e3;
+  --color-cyan:         #00A7E1;
+  --color-cyan-pale:    #cfeefc;
 
   /* ── Typography ──────────────────────────────────── */
-  --font-display: var(--font-fraunces), Georgia, serif;
-  --font-sans:    var(--font-dm-sans), system-ui, sans-serif;
+  /* Century Gothic Pro is a licensed font.
+     Fallback chain: Century Gothic (Windows/Mac system) →
+     Avenir Next (Apple) → system-ui                      */
+  --font-display: "Century Gothic Pro", "Century Gothic", "Avenir Next",
+                  "Avenir", system-ui, sans-serif;
+
+  /* Helvetica Neue → Helvetica → Arial for body          */
+  --font-sans:    "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 html {
@@ -20,27 +25,27 @@ html {
 }
 
 body {
-  background-color: #faf8f3;
-  color: #1a2942;
+  background-color: #ffffff;
+  color: #1D1D1B;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background-color: #f0e7d2;
-  color: #1a2942;
+  background-color: #cfeefc;
+  color: #1D1D1B;
 }
 
-/* ── Hero breathing gradient ──────────────────────────
-   CSS-only, two offset radial blobs that pulse at
-   different rates and phases for a living feel.        */
+/* ── Hero breathing gradient (cyan palette) ──────────
+   Two radial blobs pulsing at different rates/phases.
+   Uses cyan brand color at very low opacity on white.   */
 @keyframes hero-breathe-a {
-  0%, 100% { opacity: 0.50; transform: scale(1)    translate(0,    0   ); }
+  0%, 100% { opacity: 0.45; transform: scale(1)    translate(0,    0   ); }
   50%       { opacity: 0.80; transform: scale(1.10) translate(-3%, 2%  ); }
 }
 @keyframes hero-breathe-b {
-  0%, 100% { opacity: 0.35; transform: scale(1.06) translate(0,    0   ); }
-  50%       { opacity: 0.18; transform: scale(0.94) translate( 3%, -3% ); }
+  0%, 100% { opacity: 0.30; transform: scale(1.06) translate(0,    0   ); }
+  50%       { opacity: 0.14; transform: scale(0.94) translate( 3%, -3% ); }
 }
 
 .hero-breathe-a {
@@ -54,7 +59,7 @@ body {
   .hero-breathe-a,
   .hero-breathe-b {
     animation: none;
-    opacity: 0.55;
+    opacity: 0.4;
     transform: none;
   }
 }

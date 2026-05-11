@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import { team } from "@/lib/team";
@@ -57,45 +58,50 @@ const offices = [
 export default function Home() {
   return (
     <main>
-      {/* ── 1. Hero ─────────────────────────────────────────
-          Full-viewport navy. Two slow-breathing radial blobs
-          handled by CSS classes in globals.css.             */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-navy">
-        {/* Blob A — warm gold glow, upper-right */}
+      {/* ── 1. Hero ──────────────────────────────────────────
+          White background. Logo (black + cyan) displays as-is.
+          Two very low-opacity cyan radial blobs breathe gently.
+          Place /public/logo.png to activate logo image.       */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-canvas">
+        {/* Blob A — cyan, upper-right */}
         <div
-          className="hero-breathe-a absolute w-[750px] h-[750px] -top-40 -right-40 rounded-full pointer-events-none"
+          className="hero-breathe-a absolute w-[700px] h-[700px] -top-40 -right-40 rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, rgba(180,138,62,0.13) 0%, transparent 65%)",
+              "radial-gradient(circle, rgba(0,167,225,0.08) 0%, transparent 65%)",
           }}
           aria-hidden="true"
         />
-        {/* Blob B — lighter navy depth, lower-left */}
+        {/* Blob B — cyan, lower-left */}
         <div
-          className="hero-breathe-b absolute w-[900px] h-[900px] -bottom-48 -left-48 rounded-full pointer-events-none"
+          className="hero-breathe-b absolute w-[860px] h-[860px] -bottom-48 -left-48 rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, rgba(45,62,92,0.65) 0%, transparent 65%)",
+              "radial-gradient(circle, rgba(0,167,225,0.05) 0%, transparent 65%)",
           }}
           aria-hidden="true"
         />
 
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto px-6 py-36 text-center">
-          {/* Typographic wordmark — swap for <Image> when logo is ready */}
+          {/* Logo — /public/logo.png (black + cyan, light-bg version) */}
           <Reveal>
-            <p
-              className="font-display font-normal text-white tracking-[0.05em] mb-7"
-              style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)" }}
-            >
-              DJE ADVISORS
-            </p>
+            <div className="mb-8">
+              <Image
+                src="/logo.png"
+                alt="DJE Advisors"
+                width={300}
+                height={84}
+                className="mx-auto h-16 w-auto object-contain"
+                priority
+              />
+            </div>
           </Reveal>
 
           {/* Tagline */}
           <Reveal delay={0.08}>
             <p
-              className="font-sans font-light text-white/55 mx-auto leading-relaxed mb-12"
+              className="font-sans text-ink/55 mx-auto leading-relaxed mb-12"
               style={{ fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)", maxWidth: "38ch" }}
             >
               Tax, planning, and the person on the other end of the phone.
@@ -106,7 +112,7 @@ export default function Home() {
           <Reveal delay={0.15}>
             <Link
               href="/contact"
-              className="inline-block font-sans font-semibold bg-gold text-navy rounded-sm hover:opacity-90 transition-opacity duration-150"
+              className="inline-block font-sans font-semibold bg-cyan text-white rounded-sm hover:opacity-90 transition-opacity duration-150"
               style={{ fontSize: "1rem", letterSpacing: "0.01em", padding: "1.1rem 3rem" }}
             >
               Contact Us Today
@@ -116,11 +122,11 @@ export default function Home() {
       </section>
 
       {/* ── 2. Credentials strip ────────────────────────── */}
-      <section className="bg-canvas border-b border-border py-5 px-6">
+      <section className="bg-canvas border-y border-border py-5 px-6">
         <div className="max-w-5xl mx-auto flex flex-wrap justify-center items-center gap-x-5 gap-y-2">
           {credentials.map((c, i) => (
             <span key={c} className="flex items-center gap-5">
-              <span className="font-sans text-[0.75rem] text-navy/45 tracking-wide">
+              <span className="font-sans text-[0.75rem] text-ink/45 tracking-wide">
                 {c}
               </span>
               {i < credentials.length - 1 && (
@@ -134,19 +140,19 @@ export default function Home() {
       {/* ── 3. Services ─────────────────────────────────── */}
       <section className="bg-canvas py-28 px-6 border-b border-border">
         <div className="max-w-5xl mx-auto">
-          {/* Centered header */}
           <div className="text-center mb-16">
             <Reveal>
-              <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-gold font-medium mb-5">
+              <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-cyan font-medium mb-5">
                 What we do
               </p>
             </Reveal>
             <Reveal delay={0.06}>
               <h2
-                className="font-display font-light text-navy leading-tight mx-auto"
+                className="font-display text-ink leading-tight mx-auto"
                 style={{
                   fontSize: "clamp(2rem, 4vw, 3.2rem)",
                   maxWidth: "28ch",
+                  fontWeight: 400,
                 }}
               >
                 Services built around your situation, not a checklist.
@@ -154,24 +160,23 @@ export default function Home() {
             </Reveal>
           </div>
 
-          {/* Left-aligned service rows */}
           <div className="divide-y divide-border">
             {services.map((s, i) => (
               <Reveal key={s.num} delay={0.05 + i * 0.06}>
                 <div className="py-8 grid grid-cols-[3rem_1fr] md:grid-cols-[3rem_1fr_2fr] gap-x-8 gap-y-2 items-baseline">
                   <span
-                    className="font-display font-light text-gold/45 leading-none"
-                    style={{ fontSize: "1.8rem" }}
+                    className="font-display text-cyan/50 leading-none"
+                    style={{ fontSize: "1.8rem", fontWeight: 400 }}
                   >
                     {s.num}
                   </span>
                   <h3
-                    className="font-display font-medium text-navy"
-                    style={{ fontSize: "clamp(1rem, 1.8vw, 1.2rem)" }}
+                    className="font-display text-ink"
+                    style={{ fontSize: "clamp(1rem, 1.8vw, 1.2rem)", fontWeight: 500 }}
                   >
                     {s.title}
                   </h3>
-                  <p className="col-start-2 md:col-start-3 font-sans text-[0.88rem] text-navy/50 leading-relaxed">
+                  <p className="col-start-2 md:col-start-3 font-sans text-[0.88rem] text-ink/50 leading-relaxed">
                     {s.desc}
                   </p>
                 </div>
@@ -183,7 +188,7 @@ export default function Home() {
             <div className="mt-10 text-center">
               <Link
                 href="/services"
-                className="font-sans text-[0.82rem] font-medium text-gold hover:text-navy transition-colors duration-150"
+                className="font-sans text-[0.82rem] font-medium text-cyan hover:text-ink transition-colors duration-150"
               >
                 View all services →
               </Link>
@@ -192,19 +197,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 4. Why DJE (navy — reversed) ────────────────── */}
-      <section className="bg-navy py-28 px-6">
+      {/* ── 4. Approach (ink — reversed) ────────────────── */}
+      <section className="bg-ink py-28 px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
             <Reveal>
-              <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-gold/80 font-medium mb-5">
+              <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-cyan/80 font-medium mb-5">
                 Our approach
               </p>
             </Reveal>
             <Reveal delay={0.06}>
               <h2
-                className="font-display font-light text-white leading-tight mb-6"
-                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}
+                className="font-display text-white leading-tight mb-6"
+                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 400 }}
               >
                 We act like a CFO
                 <br />
@@ -236,11 +241,11 @@ export default function Home() {
               ].map(({ stat, label }) => (
                 <div
                   key={label}
-                  className="bg-canvas/[0.04] border border-canvas/[0.08] rounded-sm p-6"
+                  className="bg-white/[0.04] border border-white/[0.08] rounded-sm p-6"
                 >
                   <p
-                    className="font-display font-light text-white mb-1"
-                    style={{ fontSize: "clamp(1.6rem, 2.8vw, 2.2rem)" }}
+                    className="font-display text-white mb-1"
+                    style={{ fontSize: "clamp(1.6rem, 2.8vw, 2.2rem)", fontWeight: 400 }}
                   >
                     {stat}
                   </p>
@@ -257,17 +262,16 @@ export default function Home() {
       {/* ── 5. Team preview ─────────────────────────────── */}
       <section className="bg-canvas py-28 px-6 border-b border-border">
         <div className="max-w-5xl mx-auto">
-          {/* Centered header */}
           <div className="text-center mb-14">
             <Reveal>
-              <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-gold font-medium mb-4">
+              <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-cyan font-medium mb-4">
                 The team
               </p>
             </Reveal>
             <Reveal delay={0.06}>
               <h2
-                className="font-display font-light text-navy mx-auto"
-                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", maxWidth: "24ch" }}
+                className="font-display text-ink mx-auto"
+                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 400, maxWidth: "24ch" }}
               >
                 People who know your name.
               </h2>
@@ -278,36 +282,32 @@ export default function Home() {
             {team.map((member, i) => (
               <Reveal key={member.slug} delay={i * 0.08}>
                 <Link href={`/team/${member.slug}`} className="group block">
-                  <div className="aspect-[3/4] bg-canvas-alt border border-border rounded-sm flex items-center justify-center mb-4 overflow-hidden group-hover:border-gold/40 transition-colors duration-200">
+                  <div className="aspect-[3/4] bg-canvas-alt border border-border rounded-sm flex items-center justify-center mb-4 overflow-hidden group-hover:border-cyan/40 transition-colors duration-200">
                     <span
-                      className="font-display font-light text-navy/25 select-none"
-                      style={{ fontSize: "2.4rem" }}
+                      className="font-display text-ink/25 select-none"
+                      style={{ fontSize: "2.4rem", fontWeight: 400 }}
                     >
                       {member.name.split(" ").map((w) => w[0]).join("")}
                     </span>
                   </div>
-                  <p className="font-display font-medium text-navy text-[1rem] mb-0.5 group-hover:text-gold transition-colors duration-150">
+                  <p className="font-display text-ink text-[1rem] mb-0.5 group-hover:text-cyan transition-colors duration-150"
+                    style={{ fontWeight: 500 }}>
                     {member.name}
                   </p>
-                  <p className="font-sans text-[0.78rem] text-navy/45">
+                  <p className="font-sans text-[0.78rem] text-ink/45">
                     {member.title}
                   </p>
                 </Link>
               </Reveal>
             ))}
-            {/* Fill remaining slots with visual placeholders */}
             {Array.from({ length: Math.max(0, 4 - team.length) }).map((_, i) => (
               <Reveal key={`ph-${i}`} delay={(team.length + i) * 0.08}>
-                <div className="opacity-35">
+                <div className="opacity-30">
                   <div className="aspect-[3/4] bg-canvas-alt border border-dashed border-border rounded-sm flex items-center justify-center mb-4">
-                    <span className="font-sans text-[0.68rem] text-navy/30 italic">
-                      Photo
-                    </span>
+                    <span className="font-sans text-[0.68rem] text-ink/30 italic">Photo</span>
                   </div>
-                  <p className="font-display font-medium text-navy/30 text-[1rem] mb-0.5">
-                    Coming soon
-                  </p>
-                  <p className="font-sans text-[0.78rem] text-navy/20">—</p>
+                  <p className="font-display text-ink/30 text-[1rem] mb-0.5" style={{ fontWeight: 500 }}>Coming soon</p>
+                  <p className="font-sans text-[0.78rem] text-ink/20">—</p>
                 </div>
               </Reveal>
             ))}
@@ -315,10 +315,7 @@ export default function Home() {
 
           <Reveal delay={0.36}>
             <div className="mt-10 text-center">
-              <Link
-                href="/team"
-                className="font-sans text-[0.82rem] font-medium text-gold hover:text-navy transition-colors duration-150"
-              >
+              <Link href="/team" className="font-sans text-[0.82rem] font-medium text-cyan hover:text-ink transition-colors duration-150">
                 Meet the full team →
               </Link>
             </div>
@@ -329,17 +326,16 @@ export default function Home() {
       {/* ── 6. Insights ─────────────────────────────────── */}
       <section className="bg-canvas-alt py-24 px-6 border-b border-border">
         <div className="max-w-5xl mx-auto">
-          {/* Centered header */}
           <div className="text-center mb-12">
             <Reveal>
-              <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-gold font-medium mb-4">
+              <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-cyan font-medium mb-4">
                 Latest insights
               </p>
             </Reveal>
             <Reveal delay={0.06}>
               <h2
-                className="font-display font-light text-navy mx-auto"
-                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", maxWidth: "24ch" }}
+                className="font-display text-ink mx-auto"
+                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", fontWeight: 400, maxWidth: "24ch" }}
               >
                 From the desk.
               </h2>
@@ -353,29 +349,25 @@ export default function Home() {
                   href={`https://blog.djeadvisors.com/${post.slug}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group block bg-canvas border border-border rounded-sm p-7 hover:border-gold/40 transition-colors duration-200 h-full flex flex-col"
+                  className="group block bg-canvas border border-border rounded-sm p-7 hover:border-cyan/40 transition-colors duration-200 h-full flex flex-col"
                 >
                   <div className="flex items-center gap-3 mb-5">
-                    <span className="font-sans text-[0.62rem] tracking-[0.18em] uppercase text-gold font-medium">
+                    <span className="font-sans text-[0.62rem] tracking-[0.18em] uppercase text-cyan font-medium">
                       {post.category}
                     </span>
                     <span className="text-border">·</span>
-                    <span className="font-sans text-[0.72rem] text-navy/35">
-                      {post.date}
-                    </span>
+                    <span className="font-sans text-[0.72rem] text-ink/35">{post.date}</span>
                   </div>
                   <h3
-                    className="font-display font-medium text-navy leading-snug mb-3 flex-1 group-hover:text-gold transition-colors duration-150"
-                    style={{ fontSize: "1.05rem" }}
+                    className="font-display text-ink leading-snug mb-3 flex-1 group-hover:text-cyan transition-colors duration-150"
+                    style={{ fontSize: "1.05rem", fontWeight: 500 }}
                   >
                     {post.title}
                   </h3>
-                  <p className="font-sans text-[0.84rem] text-navy/50 leading-relaxed mb-5">
+                  <p className="font-sans text-[0.84rem] text-ink/50 leading-relaxed mb-5">
                     {post.excerpt}
                   </p>
-                  <p className="font-sans text-[0.78rem] font-medium text-gold">
-                    Read more →
-                  </p>
+                  <p className="font-sans text-[0.78rem] font-medium text-cyan">Read more →</p>
                 </a>
               </Reveal>
             ))}
@@ -383,12 +375,8 @@ export default function Home() {
 
           <Reveal delay={0.30}>
             <div className="mt-10 text-center">
-              <a
-                href="https://blog.djeadvisors.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-sans text-[0.82rem] font-medium text-gold hover:text-navy transition-colors duration-150"
-              >
+              <a href="https://blog.djeadvisors.com" target="_blank" rel="noopener noreferrer"
+                className="font-sans text-[0.82rem] font-medium text-cyan hover:text-ink transition-colors duration-150">
                 All articles →
               </a>
             </div>
@@ -399,17 +387,16 @@ export default function Home() {
       {/* ── 7. Offices ──────────────────────────────────── */}
       <section className="bg-canvas py-24 px-6 border-b border-border">
         <div className="max-w-5xl mx-auto">
-          {/* Centered header */}
           <div className="text-center mb-14">
             <Reveal>
-              <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-gold font-medium mb-4">
+              <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-cyan font-medium mb-4">
                 Locations
               </p>
             </Reveal>
             <Reveal delay={0.06}>
               <h2
-                className="font-display font-light text-navy"
-                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)" }}
+                className="font-display text-ink"
+                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", fontWeight: 400 }}
               >
                 Two offices. One team.
               </h2>
@@ -421,17 +408,15 @@ export default function Home() {
               <Reveal key={office.city} delay={0.06 + i * 0.08}>
                 <div className="border border-border rounded-sm p-8">
                   <div className="h-32 bg-canvas-alt rounded-sm mb-6 flex items-center justify-center border border-border">
-                    <p className="font-sans text-[0.68rem] text-navy/25 italic">
-                      Map — {office.city}
-                    </p>
+                    <p className="font-sans text-[0.68rem] text-ink/25 italic">Map — {office.city}</p>
                   </div>
-                  <p className="font-display font-medium text-navy text-[1.1rem] mb-3">
+                  <p className="font-display text-ink text-[1.1rem] mb-3" style={{ fontWeight: 500 }}>
                     {office.city}
                   </p>
-                  <div className="font-sans text-[0.85rem] text-navy/55 space-y-1">
+                  <div className="font-sans text-[0.85rem] text-ink/55 space-y-1">
                     <p>{office.address}</p>
                     <p>{office.cityState}</p>
-                    <p className="pt-2 text-navy/40">{office.hours}</p>
+                    <p className="pt-2 text-ink/40">{office.hours}</p>
                   </div>
                 </div>
               </Reveal>
@@ -441,12 +426,12 @@ export default function Home() {
       </section>
 
       {/* ── 8. CTA ──────────────────────────────────────── */}
-      <section className="bg-navy py-24 px-6">
+      <section className="bg-ink py-24 px-6">
         <div className="max-w-5xl mx-auto text-center">
           <Reveal>
             <h2
-              className="font-display font-light text-white leading-tight mb-5"
-              style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)" }}
+              className="font-display text-white leading-tight mb-5"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", fontWeight: 400 }}
             >
               Ready to get started?
             </h2>
@@ -460,7 +445,7 @@ export default function Home() {
           <Reveal delay={0.10}>
             <Link
               href="/contact"
-              className="inline-block font-sans font-semibold bg-gold text-navy rounded-sm hover:opacity-90 transition-opacity duration-150"
+              className="inline-block font-sans font-semibold bg-cyan text-white rounded-sm hover:opacity-90 transition-opacity duration-150"
               style={{ fontSize: "1rem", padding: "1.1rem 3rem" }}
             >
               Contact Us Today
