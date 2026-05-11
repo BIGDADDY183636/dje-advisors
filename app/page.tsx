@@ -67,7 +67,7 @@ export default function Home() {
           className="hero-breathe-a absolute w-[700px] h-[700px] -top-40 -right-40 rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, rgba(0,167,225,0.08) 0%, transparent 65%)",
+              "radial-gradient(circle, rgba(0,167,225,0.16) 0%, transparent 65%)",
           }}
           aria-hidden="true"
         />
@@ -76,7 +76,7 @@ export default function Home() {
           className="hero-breathe-b absolute w-[860px] h-[860px] -bottom-48 -left-48 rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, rgba(0,167,225,0.05) 0%, transparent 65%)",
+              "radial-gradient(circle, rgba(0,167,225,0.10) 0%, transparent 65%)",
           }}
           aria-hidden="true"
         />
@@ -90,7 +90,8 @@ export default function Home() {
               <img
                 src="/logo.png"
                 alt="DJE Advisors"
-                className="mx-auto h-16 w-auto object-contain"
+                className="mx-auto object-contain"
+                style={{ width: "clamp(200px, 30vw, 320px)" }}
               />
             </div>
           </Reveal>
