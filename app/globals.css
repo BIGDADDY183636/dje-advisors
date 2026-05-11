@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Palette ──────────────────────────────────────── */
+  --color-canvas:          #faf8f5;   /* warm off-white — main bg           */
+  --color-canvas-alt:      #f2ede6;   /* deeper cream — alternate sections  */
+  --color-charcoal:        #232830;   /* primary text + nav bg              */
+  --color-charcoal-mid:    #3d4553;   /* hover states                       */
+  --color-border:          #ddd6cc;   /* dividers                           */
+  --color-burgundy:        #7a1f24;   /* accent                             */
+  --color-burgundy-pale:   #f5e6e7;   /* light burgundy tint for bg panels  */
+
+  /* ── Typography ──────────────────────────────────── */
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans:    var(--font-dm-sans), system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #faf8f5;
+  color: #232830;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: #7a1f24;
+  color: #faf8f5;
+}
