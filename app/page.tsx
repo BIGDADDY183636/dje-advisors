@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import { team } from "@/lib/team";
@@ -84,16 +83,14 @@ export default function Home() {
 
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto px-6 py-36 text-center">
-          {/* Logo — /public/logo.png (black + cyan, light-bg version) */}
+          {/* Logo — /public/logo.png */}
           <Reveal>
             <div className="mb-8">
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src="/logo.png"
                 alt="DJE Advisors"
-                width={300}
-                height={84}
                 className="mx-auto h-16 w-auto object-contain"
-                priority
               />
             </div>
           </Reveal>

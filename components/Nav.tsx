@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const links = [
@@ -21,16 +20,13 @@ export default function Nav() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 bg-canvas/95 backdrop-blur-sm border-b border-border">
       <div className="max-w-5xl mx-auto px-6 h-[72px] flex items-center justify-between">
-        {/* Logo — falls back to text wordmark until /public/logo.png is present */}
+        {/* Logo */}
         <Link href="/" aria-label="DJE Advisors home">
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/logo.png"
             alt="DJE Advisors"
-            width={140}
-            height={40}
             className="h-9 w-auto object-contain"
-            priority
-            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
           />
         </Link>
 
