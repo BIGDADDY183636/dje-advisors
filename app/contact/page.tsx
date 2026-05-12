@@ -1,141 +1,448 @@
 import type { Metadata } from "next";
-import Reveal from "@/components/Reveal";
+import type { ReactNode, CSSProperties } from "react";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact — DJE Advisors",
   description:
-    "Schedule a consultation with DJE Advisors. First meetings are complimentary.",
+    "Get in touch with DJE Advisors. We respond within one business day.",
 };
 
-const offices = [
-  {
-    city: "Chicago",
-    address: "123 W Monroe St, Suite 800",
-    cityState: "Chicago, IL 60603",
-    hours: "Mon – Fri, 8am – 6pm",
-  },
-  {
-    city: "Glenview",
-    address: "1800 Waukegan Rd, Suite 200",
-    cityState: "Glenview, IL 60025",
-    hours: "Mon – Fri, 9am – 5pm",
-  },
-];
+const DISPLAY =
+  '"Century Gothic Pro", "Century Gothic", "Avenir Next", "Avenir", system-ui, sans-serif';
+const SANS = '"Helvetica Neue", Helvetica, Arial, sans-serif';
+
+function PhotoSection({
+  photoUrl,
+  overlayColor,
+  className = "",
+  style,
+  children,
+}: {
+  photoUrl: string;
+  overlayColor: string;
+  className?: string;
+  style?: CSSProperties;
+  children: ReactNode;
+}) {
+  return (
+    <section className={className} style={{ position: "relative", ...style }}>
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: `url('${photoUrl}')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          zIndex: 0,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundColor: overlayColor,
+          zIndex: 1,
+          pointerEvents: "none",
+        }}
+      />
+      <div style={{ position: "relative", zIndex: 2 }}>{children}</div>
+    </section>
+  );
+}
+
+const inputStyle: CSSProperties = {
+  display: "block",
+  width: "100%",
+  fontFamily: SANS,
+  fontSize: "0.9rem",
+  color: "#1D1D1B",
+  backgroundColor: "#ffffff",
+  border: "1px solid #e5e5e3",
+  borderRadius: "0.125rem",
+  padding: "0.75rem 1rem",
+  outline: "none",
+  boxSizing: "border-box",
+};
+
+const fieldLabelStyle: CSSProperties = {
+  display: "block",
+  fontFamily: SANS,
+  fontWeight: 500,
+  fontSize: "0.7rem",
+  letterSpacing: "0.14em",
+  textTransform: "uppercase",
+  color: "rgba(29,29,27,0.5)",
+  marginBottom: "0.4rem",
+};
+
+const infoLabelStyle: CSSProperties = {
+  fontFamily: SANS,
+  fontWeight: 500,
+  fontSize: "0.62rem",
+  letterSpacing: "0.2em",
+  textTransform: "uppercase",
+  color: "#00A7E1",
+  marginBottom: "0.35rem",
+};
+
+const infoValueStyle: CSSProperties = {
+  fontFamily: SANS,
+  fontSize: "0.9rem",
+  color: "rgba(29,29,27,0.72)",
+  lineHeight: 1.6,
+};
 
 export default function ContactPage() {
   return (
     <main className="pt-[72px]">
-      {/* Header — ink dark */}
-      <section className="bg-ink py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <Reveal>
-            <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-cyan/80 font-medium mb-5">
-              Contact
-            </p>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <h1
-              className="font-display text-white leading-tight mb-5"
-              style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)", fontWeight: 400 }}
-            >
-              Let&apos;s talk.
-            </h1>
-          </Reveal>
-          <Reveal delay={0.10}>
-            <p className="font-sans text-[0.95rem] text-white/50 max-w-lg leading-relaxed">
-              First consultations are complimentary and take about 30 minutes.
-              We&apos;ll tell you honestly whether we&apos;re the right fit —
-              and if we&apos;re not, we&apos;ll point you in the right direction.
-            </p>
-          </Reveal>
-        </div>
-      </section>
 
-      {/* Form + contact info */}
-      <section className="bg-canvas py-20 px-6 border-b border-border">
+      {/* ── 1. Hero header ── */}
+      <PhotoSection
+        photoUrl="https://images.unsplash.com/photo-1606856110002-d0991ce78250?w=2400&q=80&auto=format&fit=crop"
+        overlayColor="rgba(255,255,255,0.85)"
+        className="py-24 px-6 border-b border-border"
+      >
+        <div className="max-w-3xl mx-auto">
+          <p
+            style={{
+              fontFamily: DISPLAY,
+              fontWeight: 700,
+              fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
+              color: "#00A7E1",
+              lineHeight: 1.1,
+              marginBottom: "1.25rem",
+            }}
+          >
+            Contact
+          </p>
+          <h1
+            style={{
+              fontFamily: DISPLAY,
+              fontWeight: 700,
+              fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)",
+              color: "#1D1D1B",
+              lineHeight: 1.12,
+              marginBottom: "1.5rem",
+            }}
+          >
+            Let&apos;s Start a Conversation
+          </h1>
+          <p
+            style={{
+              fontFamily: SANS,
+              fontSize: "clamp(0.9rem, 1.6vw, 1rem)",
+              color: "rgba(29,29,27,0.6)",
+              lineHeight: 1.75,
+              maxWidth: "520px",
+            }}
+          >
+            Get in touch to discuss your tax, accounting, or advisory needs.
+            We respond within one business day.
+          </p>
+        </div>
+      </PhotoSection>
+
+      {/* ── 2. Contact info + form ── */}
+      <section
+        className="py-20 px-6 border-b border-border"
+        style={{ backgroundColor: "#ffffff" }}
+      >
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+          {/* Left: contact info */}
           <div>
-            <Reveal>
-              <h2
-                className="font-display text-ink text-[1.3rem] mb-6"
-                style={{ fontWeight: 500 }}
-              >
-                Get in touch
-              </h2>
-            </Reveal>
-            <Reveal delay={0.06}>
-              <div className="space-y-4 font-sans text-[0.88rem] text-ink/55">
-                <div>
-                  <p className="font-sans text-[0.62rem] tracking-[0.2em] uppercase text-cyan font-medium mb-1">
-                    Email
-                  </p>
-                  <a
-                    href="mailto:hello@djeadvisors.com"
-                    className="text-ink hover:text-cyan transition-colors duration-150"
-                  >
-                    hello@djeadvisors.com
-                  </a>
-                </div>
-                <div>
-                  <p className="font-sans text-[0.62rem] tracking-[0.2em] uppercase text-cyan font-medium mb-1">
-                    Locations
-                  </p>
-                  <p>Chicago &amp; Glenview, IL</p>
-                </div>
-              </div>
-            </Reveal>
-          </div>
+            <h2
+              style={{
+                fontFamily: DISPLAY,
+                fontWeight: 700,
+                fontSize: "clamp(1.4rem, 2.5vw, 1.8rem)",
+                color: "#1D1D1B",
+                marginBottom: "2.5rem",
+              }}
+            >
+              Get in Touch
+            </h2>
 
-          <Reveal delay={0.08}>
-            <div className="bg-canvas-alt border border-border rounded-sm p-8">
-              <p className="font-sans text-[0.88rem] text-ink/50 italic">
-                Contact form coming soon — email us directly at{" "}
+            <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
+
+              <div>
+                <p style={infoLabelStyle}>Email</p>
                 <a
-                  href="mailto:hello@djeadvisors.com"
-                  className="text-cyan not-italic hover:underline"
+                  href="mailto:david@djeadvisors.com"
+                  style={{ ...infoValueStyle, color: "#1D1D1B", textDecoration: "none" }}
+                  onMouseOver={(e) => (e.currentTarget.style.color = "#00A7E1")}
+                  onMouseOut={(e) => (e.currentTarget.style.color = "#1D1D1B")}
                 >
-                  hello@djeadvisors.com
+                  david@djeadvisors.com
                 </a>
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+              </div>
 
-      {/* Offices */}
-      <section className="bg-canvas py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <Reveal>
-            <p className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-cyan font-medium mb-5">
-              Our offices
-            </p>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-            {offices.map((office, i) => (
-              <Reveal key={office.city} delay={0.06 + i * 0.08}>
-                <div className="border border-border rounded-sm p-8">
-                  <div className="h-28 bg-canvas-alt rounded-sm mb-6 flex items-center justify-center border border-border">
-                    <p className="font-sans text-[0.68rem] text-ink/25 italic">
-                      Map — {office.city}
-                    </p>
-                  </div>
-                  <p
-                    className="font-display text-ink text-[1.05rem] mb-3"
-                    style={{ fontWeight: 500 }}
-                  >
-                    {office.city}
-                  </p>
-                  <div className="font-sans text-[0.85rem] text-ink/55 space-y-1">
-                    <p>{office.address}</p>
-                    <p>{office.cityState}</p>
-                    <p className="pt-2 text-ink/40">{office.hours}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+              <div>
+                <p style={infoLabelStyle}>Phone</p>
+                <p style={infoValueStyle}>(312) 324-0354</p>
+              </div>
+
+              <div>
+                <p style={infoLabelStyle}>Chicago Office</p>
+                <p style={infoValueStyle}>
+                  2155 W Roscoe Street, Suite 1-South
+                  <br />
+                  Chicago, IL 60618
+                </p>
+              </div>
+
+              <div>
+                <p style={infoLabelStyle}>Glenview (Satellite)</p>
+                <p style={infoValueStyle}>
+                  2700 Patriot Boulevard, Suite 140
+                  <br />
+                  Glenview, IL 60026
+                </p>
+              </div>
+
+              <div>
+                <p style={infoLabelStyle}>Hours</p>
+                <p style={infoValueStyle}>Monday – Friday, 9:00 AM – 5:00 PM CT</p>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Right: contact form */}
+          <div>
+            <h2
+              style={{
+                fontFamily: DISPLAY,
+                fontWeight: 700,
+                fontSize: "clamp(1.4rem, 2.5vw, 1.8rem)",
+                color: "#1D1D1B",
+                marginBottom: "2.5rem",
+              }}
+            >
+              Send a Message
+            </h2>
+
+            {/* TODO: configure Formspree success redirect in dashboard */}
+            <form
+              action="https://formspree.io/f/xwvyollb"
+              method="POST"
+              style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
+            >
+              <div>
+                <label htmlFor="name" style={fieldLabelStyle}>Name *</label>
+                <input id="name" type="text" name="name" required style={inputStyle} />
+              </div>
+
+              <div>
+                <label htmlFor="email" style={fieldLabelStyle}>Email *</label>
+                <input id="email" type="email" name="email" required style={inputStyle} />
+              </div>
+
+              <div>
+                <label htmlFor="phone" style={fieldLabelStyle}>Phone</label>
+                <input id="phone" type="tel" name="phone" style={inputStyle} />
+              </div>
+
+              <div>
+                <label htmlFor="subject" style={fieldLabelStyle}>Subject *</label>
+                <input id="subject" type="text" name="subject" required style={inputStyle} />
+              </div>
+
+              <div>
+                <label htmlFor="message" style={fieldLabelStyle}>Message *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={5}
+                  required
+                  style={{ ...inputStyle, resize: "vertical", minHeight: "120px" }}
+                />
+              </div>
+
+              <button
+                type="submit"
+                style={{
+                  width: "100%",
+                  backgroundColor: "#00A7E1",
+                  color: "#ffffff",
+                  fontFamily: SANS,
+                  fontWeight: 600,
+                  fontSize: "1rem",
+                  padding: "1rem",
+                  border: "none",
+                  borderRadius: "0.125rem",
+                  cursor: "pointer",
+                  letterSpacing: "0.01em",
+                }}
+              >
+                Send Message
+              </button>
+            </form>
           </div>
         </div>
       </section>
+
+      {/* ── 3. Office location cards ── */}
+      <section
+        className="py-20 px-6 border-b border-border"
+        style={{ backgroundColor: "#f6f6f4" }}
+      >
+        <div className="max-w-5xl mx-auto">
+          <h2
+            style={{
+              fontFamily: DISPLAY,
+              fontWeight: 700,
+              fontSize: "clamp(1.4rem, 2.5vw, 1.8rem)",
+              color: "#1D1D1B",
+              marginBottom: "2.5rem",
+            }}
+          >
+            Our Offices
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            {/* Chicago */}
+            <div
+              style={{
+                backgroundColor: "#ffffff",
+                border: "1px solid #e5e5e3",
+                borderRadius: "0.125rem",
+                padding: "2rem",
+              }}
+            >
+              <div
+                style={{
+                  width: "2.5rem",
+                  height: "2.5rem",
+                  backgroundColor: "#00A7E1",
+                  borderRadius: "50%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: "1.25rem",
+                  fontSize: "1.1rem",
+                }}
+                aria-hidden="true"
+              >
+                📍
+              </div>
+              <p style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "1.05rem", color: "#1D1D1B", marginBottom: "0.5rem" }}>
+                Chicago
+              </p>
+              <p style={{ fontFamily: SANS, fontSize: "0.88rem", color: "rgba(29,29,27,0.6)", lineHeight: 1.6, marginBottom: "1.25rem" }}>
+                2155 W Roscoe Street, Suite 1-South
+                <br />
+                Chicago, IL 60618
+              </p>
+              <a
+                href="https://maps.google.com/?q=2155+W+Roscoe+Street+Chicago+IL+60618"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontFamily: SANS, fontWeight: 500, fontSize: "0.82rem", color: "#00A7E1", textDecoration: "none" }}
+              >
+                Get Directions →
+              </a>
+            </div>
+
+            {/* Glenview */}
+            <div
+              style={{
+                backgroundColor: "#ffffff",
+                border: "1px solid #e5e5e3",
+                borderRadius: "0.125rem",
+                padding: "2rem",
+              }}
+            >
+              <div
+                style={{
+                  width: "2.5rem",
+                  height: "2.5rem",
+                  backgroundColor: "#00A7E1",
+                  borderRadius: "50%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: "1.25rem",
+                  fontSize: "1.1rem",
+                }}
+                aria-hidden="true"
+              >
+                📍
+              </div>
+              <p style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "1.05rem", color: "#1D1D1B", marginBottom: "0.5rem" }}>
+                Glenview <span style={{ fontFamily: SANS, fontWeight: 400, fontSize: "0.78rem", color: "rgba(29,29,27,0.4)" }}>(Satellite)</span>
+              </p>
+              <p style={{ fontFamily: SANS, fontSize: "0.88rem", color: "rgba(29,29,27,0.6)", lineHeight: 1.6, marginBottom: "1.25rem" }}>
+                2700 Patriot Boulevard, Suite 140
+                <br />
+                Glenview, IL 60026
+              </p>
+              <a
+                href="https://maps.google.com/?q=2700+Patriot+Blvd+Glenview+IL+60026"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontFamily: SANS, fontWeight: 500, fontSize: "0.82rem", color: "#00A7E1", textDecoration: "none" }}
+              >
+                Get Directions →
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4. Bottom CTA ── */}
+      <section
+        className="py-20 px-6"
+        style={{ backgroundColor: "#1D1D1B" }}
+      >
+        <div className="max-w-2xl mx-auto text-center">
+          <h2
+            style={{
+              fontFamily: DISPLAY,
+              fontWeight: 700,
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              color: "#ffffff",
+              lineHeight: 1.2,
+              marginBottom: "1rem",
+            }}
+          >
+            Prefer a Call?
+          </h2>
+          <p
+            style={{
+              fontFamily: SANS,
+              fontSize: "0.95rem",
+              color: "rgba(255,255,255,0.5)",
+              lineHeight: 1.7,
+              marginBottom: "2.25rem",
+            }}
+          >
+            Reach out by phone and we&apos;ll get you scheduled.
+          </p>
+          <a
+            href="tel:+13123240354"
+            style={{
+              display: "inline-block",
+              backgroundColor: "#00A7E1",
+              color: "#ffffff",
+              fontFamily: SANS,
+              fontWeight: 600,
+              fontSize: "1rem",
+              padding: "1rem 2.5rem",
+              borderRadius: "0.125rem",
+              textDecoration: "none",
+            }}
+          >
+            Call (312) 324-0354
+          </a>
+        </div>
+      </section>
+
     </main>
   );
 }
