@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode, CSSProperties } from "react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ const people = [
   { initials: "AD", name: "Amber DeGroot",     title: "Senior Manager" },
   { initials: "HH", name: "Horatiu Hosu",      title: "Director" },
   { initials: "NL", name: "Nick Lassak",       title: "Senior Associate" },
-  { initials: "MP", name: "Mihir Patel",        title: "Senior Manager" },
+  { initials: "MP", name: "Mihir Patel",       title: "Senior Manager" },
   { initials: "DR", name: "David Rodriguez",   title: "Senior Associate" },
   { initials: "BT", name: "Bibhuti Thapa",     title: "Tax Associate" },
 ];
@@ -40,8 +41,13 @@ function TeamCard({
 }) {
   return (
     <div
-      className="bg-canvas border border-border rounded-sm"
-      style={{ padding: "2rem 1.5rem", textAlign: "center" }}
+      style={{
+        padding: "2rem 1.5rem",
+        textAlign: "center",
+        backgroundColor: "#ffffff",
+        border: "1px solid #e5e5e3",
+        borderRadius: "0.125rem",
+      }}
     >
       <div
         style={{
@@ -53,7 +59,6 @@ function TeamCard({
           alignItems: "center",
           justifyContent: "center",
           margin: "0 auto 1.25rem",
-          flexShrink: 0,
         }}
       >
         <span
@@ -81,8 +86,9 @@ function TeamCard({
         {name}
       </p>
       <p
-        className="font-sans"
         style={{
+          fontFamily:
+            '"Helvetica Neue", Helvetica, Arial, sans-serif',
           fontSize: "0.78rem",
           color: "rgba(29,29,27,0.45)",
           marginBottom: "1rem",
@@ -92,8 +98,12 @@ function TeamCard({
         {title}
       </p>
       <span
-        className="font-sans font-medium"
-        style={{ fontSize: "0.78rem", color: "#00A7E1" }}
+        style={{
+          fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+          fontWeight: 500,
+          fontSize: "0.78rem",
+          color: "#00A7E1",
+        }}
       >
         Read Bio →
       </span>
@@ -101,37 +111,67 @@ function TeamCard({
   );
 }
 
+// Reusable: a section with a full-cover background image + rgba overlay.
+// Image lives in its own abs-positioned div so it never conflicts with
+// the section's own Tailwind background-color class.
+function PhotoSection({
+  photoUrl,
+  overlayColor,
+  className = "",
+  style,
+  children,
+}: {
+  photoUrl: string;
+  overlayColor: string;
+  className?: string;
+  style?: CSSProperties;
+  children: ReactNode;
+}) {
+  return (
+    <section className={className} style={{ position: "relative", ...style }}>
+      {/* Background image layer */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: `url('${photoUrl}')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          zIndex: 0,
+        }}
+      />
+      {/* Colour overlay */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundColor: overlayColor,
+          zIndex: 1,
+          pointerEvents: "none",
+        }}
+      />
+      {/* Content above both layers */}
+      <div style={{ position: "relative", zIndex: 2 }}>{children}</div>
+    </section>
+  );
+}
+
 export default function AboutPage() {
   return (
     <main className="pt-[72px]">
 
-      {/* ── 1. Hero header — Chicago skyline (Pedro Lastra) ── */}
-      <section
-        className="bg-canvas py-24 px-6 border-b border-border"
-        style={{
-          position: "relative",
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=2400&q=80')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-        }}
+      {/* ── 1. Hero header ── */}
+      <PhotoSection
+        photoUrl="https://images.unsplash.com/photo-1494522855154-9297ac14b55f?auto=format&fit=crop&w=2400&q=80"
+        overlayColor="rgba(255,255,255,0.85)"
+        className="py-24 px-6 border-b border-border"
       >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundColor: "rgba(255,255,255,0.85)",
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          className="max-w-3xl mx-auto text-center"
-          style={{ position: "relative", zIndex: 1 }}
-        >
+        <div className="max-w-3xl mx-auto text-center">
           <p
-            className="font-sans font-medium"
             style={{
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontWeight: 500,
               fontSize: "0.68rem",
               letterSpacing: "0.22em",
               textTransform: "uppercase",
@@ -156,10 +196,11 @@ export default function AboutPage() {
             Personalized Approach
           </h1>
           <p
-            className="font-sans leading-relaxed"
             style={{
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
               fontSize: "clamp(0.9rem, 1.6vw, 1rem)",
               color: "rgba(29,29,27,0.6)",
+              lineHeight: 1.7,
               maxWidth: "600px",
               margin: "0 auto",
             }}
@@ -170,35 +211,19 @@ export default function AboutPage() {
             ever-changing financial world with care and expertise.
           </p>
         </div>
-      </section>
+      </PhotoSection>
 
-      {/* ── 2. True Professionals — Chicago skyline (Sawyer Bengtson) ── */}
-      <section
-        className="bg-canvas-alt py-20 px-6 border-b border-border"
-        style={{
-          position: "relative",
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=2400&q=80')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-        }}
+      {/* ── 2. True Professionals ── */}
+      <PhotoSection
+        photoUrl="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=2400&q=80"
+        overlayColor="rgba(245,245,240,0.85)"
+        className="py-20 px-6 border-b border-border"
       >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundColor: "rgba(245,245,240,0.85)",
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          className="max-w-3xl mx-auto text-center"
-          style={{ position: "relative", zIndex: 1 }}
-        >
+        <div className="max-w-3xl mx-auto text-center">
           <p
-            className="font-sans font-medium"
             style={{
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontWeight: 500,
               fontSize: "0.68rem",
               letterSpacing: "0.22em",
               textTransform: "uppercase",
@@ -221,10 +246,11 @@ export default function AboutPage() {
             Meet the Team
           </h2>
           <p
-            className="font-sans leading-relaxed"
             style={{
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
               fontSize: "clamp(0.9rem, 1.6vw, 1rem)",
               color: "rgba(29,29,27,0.6)",
+              lineHeight: 1.7,
               maxWidth: "540px",
               margin: "0 auto",
             }}
@@ -234,10 +260,13 @@ export default function AboutPage() {
             colleagues.
           </p>
         </div>
-      </section>
+      </PhotoSection>
 
-      {/* ── 3. Partners grid — NO photo, clean white ── */}
-      <section className="bg-canvas py-20 px-6 border-b border-border">
+      {/* ── 3. Partners grid — no photo ── */}
+      <section
+        className="py-20 px-6 border-b border-border"
+        style={{ backgroundColor: "#ffffff" }}
+      >
         <div className="max-w-5xl mx-auto">
           <h2
             style={{
@@ -258,8 +287,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── 4. Our People grid — NO photo, clean cream ── */}
-      <section className="bg-canvas-alt py-20 px-6 border-b border-border">
+      {/* ── 4. Our People grid — no photo ── */}
+      <section
+        className="py-20 px-6 border-b border-border"
+        style={{ backgroundColor: "#f6f6f4" }}
+      >
         <div className="max-w-5xl mx-auto">
           <h2
             style={{
@@ -280,30 +312,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── 5. Mid CTA — Chicago river/architecture (Nastuh) ── */}
-      <section
-        className="bg-ink py-20 px-6 border-b border-white/10"
-        style={{
-          position: "relative",
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=2400&q=80')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-        }}
+      {/* ── 5. Mid CTA ── */}
+      <PhotoSection
+        photoUrl="https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=2400&q=80"
+        overlayColor="rgba(29,29,27,0.78)"
+        className="py-20 px-6"
+        style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}
       >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundColor: "rgba(29,29,27,0.75)",
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          className="max-w-2xl mx-auto text-center"
-          style={{ position: "relative", zIndex: 1 }}
-        >
+        <div className="max-w-2xl mx-auto text-center">
           <h2
             style={{
               fontFamily: DISPLAY,
@@ -317,8 +333,8 @@ export default function AboutPage() {
             Need reliable financial guidance?
           </h2>
           <p
-            className="font-sans"
             style={{
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
               fontSize: "0.95rem",
               color: "rgba(255,255,255,0.5)",
               marginBottom: "2rem",
@@ -328,38 +344,30 @@ export default function AboutPage() {
           </p>
           <Link
             href="/services"
-            className="inline-block font-sans font-semibold bg-cyan text-white rounded-sm hover:opacity-90 transition-opacity duration-150"
-            style={{ fontSize: "1rem", padding: "1rem 2.5rem" }}
+            style={{
+              display: "inline-block",
+              backgroundColor: "#00A7E1",
+              color: "#ffffff",
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontWeight: 600,
+              fontSize: "1rem",
+              padding: "1rem 2.5rem",
+              borderRadius: "0.125rem",
+              textDecoration: "none",
+            }}
           >
             See Our Services
           </Link>
         </div>
-      </section>
+      </PhotoSection>
 
-      {/* ── 6. Bottom CTA — Chicago architecture (Sawyer) ── */}
-      <section
-        className="bg-canvas py-20 px-6"
-        style={{
-          position: "relative",
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1606856110002-d0991ce78250?w=2400&q=80')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-        }}
+      {/* ── 6. Bottom CTA ── */}
+      <PhotoSection
+        photoUrl="https://images.unsplash.com/photo-1606856110002-d0991ce78250?auto=format&fit=crop&w=2400&q=80"
+        overlayColor="rgba(255,255,255,0.85)"
+        className="py-20 px-6"
       >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundColor: "rgba(255,255,255,0.85)",
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          className="max-w-2xl mx-auto text-center"
-          style={{ position: "relative", zIndex: 1 }}
-        >
+        <div className="max-w-2xl mx-auto text-center">
           <h2
             style={{
               fontFamily: DISPLAY,
@@ -373,8 +381,8 @@ export default function AboutPage() {
             Get Expert Tax and Accounting Support&nbsp;— All Year Long
           </h2>
           <p
-            className="font-sans"
             style={{
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
               fontSize: "0.95rem",
               color: "rgba(29,29,27,0.5)",
               marginBottom: "2rem",
@@ -384,13 +392,22 @@ export default function AboutPage() {
           </p>
           <Link
             href="/contact"
-            className="inline-block font-sans font-semibold bg-cyan text-white rounded-sm hover:opacity-90 transition-opacity duration-150"
-            style={{ fontSize: "1rem", padding: "1rem 2.5rem" }}
+            style={{
+              display: "inline-block",
+              backgroundColor: "#00A7E1",
+              color: "#ffffff",
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontWeight: 600,
+              fontSize: "1rem",
+              padding: "1rem 2.5rem",
+              borderRadius: "0.125rem",
+              textDecoration: "none",
+            }}
           >
             Contact Us Today
           </Link>
         </div>
-      </section>
+      </PhotoSection>
 
     </main>
   );
