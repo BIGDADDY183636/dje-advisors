@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
+// Sawyer Bengtson — Chicago with dramatic sky and clouds above the buildings
 const PHOTO_URL =
-  "https://images.unsplash.com/photo-1481627834876-b7833e8f5570";
+  "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=2400&q=80";
 
 export default function HeroScrollEffect() {
   const imgWrapRef = useRef<HTMLDivElement>(null);
@@ -20,7 +21,11 @@ export default function HeroScrollEffect() {
 
     function update() {
       const progress = Math.min(window.scrollY / window.innerHeight, 1);
-      imgWrap!.style.transform = `scale(${1 + progress * 0.4})`;
+      // translateY pushes image down so sky (top) comes into view — "flying up"
+      // scale 1→2 zooms in simultaneously from center
+      const translateY = progress * 40; // vh
+      const scale = 1 + progress * 1;   // 1 → 2
+      imgWrap!.style.transform = `translateY(${translateY}vh) scale(${scale})`;
       black!.style.opacity = String(progress);
       raf = 0;
     }
@@ -40,13 +45,13 @@ export default function HeroScrollEffect() {
 
   return (
     <>
-      {/* Background image — scales on scroll, transform-origin top center */}
+      {/* Background image — translateY + scale on scroll, transform-origin center */}
       <div
         ref={imgWrapRef}
         style={{
           position: "absolute",
           inset: 0,
-          transformOrigin: "top center",
+          transformOrigin: "center",
           willChange: "transform",
           zIndex: 0,
         }}
@@ -56,7 +61,7 @@ export default function HeroScrollEffect() {
           alt=""
           fill
           sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "center top" }}
+          style={{ objectFit: "cover", objectPosition: "center center" }}
           priority
         />
       </div>
