@@ -114,15 +114,6 @@ export default function Home() {
             Personalized Approach
           </h2>
 
-          {/* Primary CTA */}
-          <Link
-            href="/about"
-            className="inline-block font-sans font-semibold bg-cyan text-white rounded-sm hover:opacity-90 transition-opacity duration-150"
-            style={{ fontSize: "1rem", letterSpacing: "0.01em", padding: "1rem 2.5rem" }}
-          >
-            Learn More
-          </Link>
-
           {/* Body paragraph */}
           <p
             className="font-sans leading-relaxed"

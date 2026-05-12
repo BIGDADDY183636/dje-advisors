@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
+  { label: "Home",     href: "/" },
   { label: "About",    href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Team",     href: "/team" },
@@ -46,21 +47,7 @@ export default function Nav() {
               )}
             </Link>
           ))}
-          <Link
-            href="/contact"
-            className="font-sans text-[0.78rem] font-medium bg-cyan text-white px-5 py-2 rounded-sm hover:opacity-90 transition-opacity duration-150 whitespace-nowrap"
-          >
-            Schedule a call
-          </Link>
         </nav>
-
-        {/* Mobile */}
-        <Link
-          href="/contact"
-          className="md:hidden font-sans text-[0.76rem] font-medium bg-cyan text-white px-4 py-2 rounded-sm"
-        >
-          Contact
-        </Link>
       </div>
     </header>
   );
