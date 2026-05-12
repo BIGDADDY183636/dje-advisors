@@ -43,7 +43,6 @@ function TeamCard({
       className="bg-canvas border border-border rounded-sm"
       style={{ padding: "2rem 1.5rem", textAlign: "center" }}
     >
-      {/* Circular avatar */}
       <div
         style={{
           width: "72px",
@@ -69,8 +68,6 @@ function TeamCard({
           {initials}
         </span>
       </div>
-
-      {/* Name */}
       <p
         style={{
           fontFamily: DISPLAY,
@@ -83,8 +80,6 @@ function TeamCard({
       >
         {name}
       </p>
-
-      {/* Title */}
       <p
         className="font-sans"
         style={{
@@ -96,8 +91,6 @@ function TeamCard({
       >
         {title}
       </p>
-
-      {/* Read Bio */}
       <span
         className="font-sans font-medium"
         style={{ fontSize: "0.78rem", color: "#00A7E1" }}
@@ -112,9 +105,30 @@ export default function AboutPage() {
   return (
     <main className="pt-[72px]">
 
-      {/* ── 1. Hero header ─────────────────────────────── */}
-      <section className="bg-canvas py-24 px-6 border-b border-border">
-        <div className="max-w-3xl mx-auto text-center">
+      {/* ── 1. Hero header — Chicago skyline (Pedro Lastra) ── */}
+      <section
+        className="bg-canvas py-24 px-6 border-b border-border"
+        style={{
+          position: "relative",
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=2400&q=80')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundColor: "rgba(255,255,255,0.85)",
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          className="max-w-3xl mx-auto text-center"
+          style={{ position: "relative", zIndex: 1 }}
+        >
           <p
             className="font-sans font-medium"
             style={{
@@ -158,9 +172,30 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── 2. True Professionals ──────────────────────── */}
-      <section className="bg-canvas-alt py-20 px-6 border-b border-border">
-        <div className="max-w-3xl mx-auto text-center">
+      {/* ── 2. True Professionals — Chicago skyline (Sawyer Bengtson) ── */}
+      <section
+        className="bg-canvas-alt py-20 px-6 border-b border-border"
+        style={{
+          position: "relative",
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=2400&q=80')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundColor: "rgba(245,245,240,0.85)",
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          className="max-w-3xl mx-auto text-center"
+          style={{ position: "relative", zIndex: 1 }}
+        >
           <p
             className="font-sans font-medium"
             style={{
@@ -201,7 +236,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── 3. Partners grid ───────────────────────────── */}
+      {/* ── 3. Partners grid — NO photo, clean white ── */}
       <section className="bg-canvas py-20 px-6 border-b border-border">
         <div className="max-w-5xl mx-auto">
           <h2
@@ -223,7 +258,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── 4. Our People grid ─────────────────────────── */}
+      {/* ── 4. Our People grid — NO photo, clean cream ── */}
       <section className="bg-canvas-alt py-20 px-6 border-b border-border">
         <div className="max-w-5xl mx-auto">
           <h2
@@ -245,9 +280,30 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── 5. Mid-page CTA ────────────────────────────── */}
-      <section className="bg-ink py-20 px-6 border-b border-white/10">
-        <div className="max-w-2xl mx-auto text-center">
+      {/* ── 5. Mid CTA — Chicago river/architecture (Nastuh) ── */}
+      <section
+        className="bg-ink py-20 px-6 border-b border-white/10"
+        style={{
+          position: "relative",
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=2400&q=80')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundColor: "rgba(29,29,27,0.75)",
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          className="max-w-2xl mx-auto text-center"
+          style={{ position: "relative", zIndex: 1 }}
+        >
           <h2
             style={{
               fontFamily: DISPLAY,
@@ -280,9 +336,30 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── 6. Bottom CTA ──────────────────────────────── */}
-      <section className="bg-canvas py-20 px-6">
-        <div className="max-w-2xl mx-auto text-center">
+      {/* ── 6. Bottom CTA — Chicago architecture (Sawyer) ── */}
+      <section
+        className="bg-canvas py-20 px-6"
+        style={{
+          position: "relative",
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1606856110002-d0991ce78250?w=2400&q=80')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundColor: "rgba(255,255,255,0.85)",
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          className="max-w-2xl mx-auto text-center"
+          style={{ position: "relative", zIndex: 1 }}
+        >
           <h2
             style={{
               fontFamily: DISPLAY,
