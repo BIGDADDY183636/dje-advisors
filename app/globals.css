@@ -36,30 +36,48 @@ body {
   color: #1D1D1B;
 }
 
-/* ── Hero breathing gradient (cyan palette) ──────────
-   Two radial blobs pulsing at different rates/phases.
-   Uses cyan brand color at very low opacity on white.   */
-@keyframes hero-breathe-a {
-  0%, 100% { opacity: 0.50; transform: scale(1)    translate(0,    0   ); }
-  50%       { opacity: 0.85; transform: scale(1.07) translate(-2%, 1.5%); }
-}
-@keyframes hero-breathe-b {
-  0%, 100% { opacity: 0.35; transform: scale(1.04) translate(0,    0   ); }
-  50%       { opacity: 0.70; transform: scale(0.96) translate( 2%, -2% ); }
-}
+/* ── Hero wordmark entrance + exit sequence ───────────
+   D drops (0ms) → J (650ms) → E (1300ms)
+   → 200ms hold → ADVISORS rises (1900ms)
+   → 600ms hold → wordmark exits (2900ms, 700ms)
+   → paragraph + CTA enter (2700ms / 2900ms)           */
 
-.hero-breathe-a {
-  animation: hero-breathe-a 17s ease-in-out infinite;
-}
-.hero-breathe-b {
-  animation: hero-breathe-b 22s ease-in-out infinite 4s;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-breathe-a,
-  .hero-breathe-b {
-    animation: none;
-    opacity: 0.4;
-    transform: none;
+@keyframes letter-drop-in {
+  from { opacity: 0; transform: translateY(-60px); }
+  to   {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 40px rgba(0,167,225,0.45), 0 0 80px rgba(0,167,225,0.2);
   }
+}
+@keyframes advisors-rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes wordmark-exit {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes hero-content-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-letter-d  { animation: letter-drop-in     400ms cubic-bezier(0.16,1,0.3,1)    0ms both; }
+.hero-letter-j  { animation: letter-drop-in     400ms cubic-bezier(0.16,1,0.3,1)  650ms both; }
+.hero-letter-e  { animation: letter-drop-in     400ms cubic-bezier(0.16,1,0.3,1) 1300ms both; }
+.hero-advisors  { animation: advisors-rise       400ms ease                       1900ms both; }
+.hero-wordmark  { animation: wordmark-exit       700ms ease                       2900ms both; }
+.hero-paragraph { animation: hero-content-enter  500ms ease                       2700ms both; }
+.hero-cta-anim  { animation: hero-content-enter  500ms ease                       2900ms both; }
+
+/* Reduced motion: skip to final state — wordmark hidden, content visible */
+@media (prefers-reduced-motion: reduce) {
+  .hero-wordmark  { display: none; }
+  .hero-paragraph,
+  .hero-cta-anim  { animation: none; }
+  .hero-letter-d,
+  .hero-letter-j,
+  .hero-letter-e,
+  .hero-advisors  { animation: none; }
 }

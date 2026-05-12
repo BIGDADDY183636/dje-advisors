@@ -59,61 +59,74 @@ export default function Home() {
   return (
     <main>
       {/* ── 1. Hero ──────────────────────────────────────────
-          White background. Logo (black + cyan) displays as-is.
-          Two very low-opacity cyan radial blobs breathe gently.
-          Place /public/logo.png to activate logo image.       */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-canvas">
-        {/* Blob A — cyan, upper-right (reduced to ~9% effective) */}
+          Gradient background: cyan-tinted → white.
+          Wordmark animates in, glows, then fades out.
+          Paragraph crossfades in during wordmark exit.     */}
+      <section
+        className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
+        style={{
+          background:
+            "linear-gradient(135deg, #d4eff9 0%, #e8f6fc 50%, #ffffff 100%)",
+        }}
+      >
+        {/* Stacked zone: wordmark and paragraph share the same grid cell.
+            The wordmark fades out as the paragraph fades in — clean crossfade.
+            The grid cell sizes to the paragraph (taller content wins). */}
         <div
-          className="hero-breathe-a absolute w-[700px] h-[700px] -top-40 -right-40 rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(0,167,225,0.12) 0%, transparent 65%)",
-          }}
-          aria-hidden="true"
-        />
-        {/* Blob B — cyan, lower-left (reduced to ~6% effective) */}
-        <div
-          className="hero-breathe-b absolute w-[860px] h-[860px] -bottom-48 -left-48 rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(0,167,225,0.08) 0%, transparent 65%)",
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Content */}
-        <div className="relative z-10 max-w-3xl mx-auto px-6 py-36 text-center">
-          {/* Animated typographic wordmark */}
-          <div className="mb-10">
+          className="w-full max-w-3xl mx-auto mb-10"
+          style={{ display: "grid" }}
+        >
+          {/* Layer 1 — Wordmark (exits at 2.9s) */}
+          <div
+            className="hero-wordmark"
+            style={{
+              gridArea: "1/1",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "2.5rem 1rem",
+              pointerEvents: "none",
+            }}
+          >
             <HeroWordmark />
           </div>
 
-          {/* Body paragraph */}
-          <p
-            className="font-sans mx-auto leading-relaxed mb-10"
+          {/* Layer 2 — Paragraph (enters at 2.7s) */}
+          <div
+            className="hero-paragraph"
             style={{
-              fontSize: "clamp(0.9rem, 1.6vw, 1rem)",
-              color: "#5a5a58",
-              maxWidth: "600px",
+              gridArea: "1/1",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "2.5rem 1rem",
             }}
           >
-            Trusted Partner in Tax and Accounting. DJE Advisors is an
-            independent tax and accounting firm serving business owners,
-            individuals, and families. As an independent firm, we are solely
-            an advocate for you, providing solutions that meet your needs in a
-            continually changing environment.
-          </p>
-
-          {/* Primary CTA */}
-          <Link
-            href="/contact"
-            className="inline-block font-sans font-semibold bg-cyan text-white rounded-sm hover:opacity-90 transition-opacity duration-150"
-            style={{ fontSize: "1rem", letterSpacing: "0.01em", padding: "1.1rem 3rem" }}
-          >
-            Contact Us Today
-          </Link>
+            <p
+              className="font-sans leading-relaxed text-center"
+              style={{
+                fontSize: "clamp(0.9rem, 1.6vw, 1rem)",
+                color: "#5a5a58",
+                maxWidth: "600px",
+              }}
+            >
+              Trusted Partner in Tax and Accounting. DJE Advisors is an
+              independent tax and accounting firm serving business owners,
+              individuals, and families. As an independent firm, we are solely
+              an advocate for you, providing solutions that meet your needs in
+              a continually changing environment.
+            </p>
+          </div>
         </div>
+
+        {/* CTA — enters at 2.9s alongside wordmark exit */}
+        <Link
+          href="/contact"
+          className="hero-cta-anim inline-block font-sans font-semibold bg-cyan text-white rounded-sm hover:opacity-90"
+          style={{ fontSize: "1rem", letterSpacing: "0.01em", padding: "1.1rem 3rem" }}
+        >
+          Contact Us Today
+        </Link>
       </section>
 
       {/* ── 2. Credentials strip ────────────────────────── */}
