@@ -20,13 +20,23 @@ export default function HeroScrollEffect() {
     let raf = 0;
 
     function update() {
-      const progress = Math.min(window.scrollY / window.innerHeight, 1);
-      // translateY pushes image down so sky (top) comes into view — "flying up"
-      // scale 1→2 zooms in simultaneously from center
-      const translateY = progress * 40; // vh
-      const scale = 1 + progress * 2;   // 1 → 3
+      // Outer container is 200vh; sticky hero pins for the first 100vh of scroll.
+      // progress 0→1 maps to scrollY 0→innerHeight.
+      const raw = Math.min(window.scrollY / window.innerHeight, 1);
+
+      // Phase 1 (raw 0→0.7): zoom plays, overlay fades to 0.5
+      // Phase 2 (raw 0.7→1): zoom locked at max, overlay continues to 1
+      const zoomP = Math.min(raw / 0.7, 1);
+      const translateY = zoomP * 40; // 0→40vh
+      const scale = 1 + zoomP * 2;  // 1→3
+
+      const overlayOpacity =
+        raw <= 0.7
+          ? (raw / 0.7) * 0.5
+          : 0.5 + ((raw - 0.7) / 0.3) * 0.5;
+
       imgWrap!.style.transform = `translateY(${translateY}vh) scale(${scale})`;
-      black!.style.opacity = String(progress);
+      black!.style.opacity = String(overlayOpacity);
       raf = 0;
     }
 

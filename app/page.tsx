@@ -60,11 +60,13 @@ export default function Home() {
   return (
     <main>
       {/* ── 1. Hero ──────────────────────────────────────────
-          Gradient background: cyan-tinted → white.
-          Wordmark animates in, glows, then fades out.
-          Paragraph crossfades in during wordmark exit.     */}
+          Outer .hero-outer is 200vh so the sticky hero section
+          has 100vh of scroll budget for the zoom + fade animation.
+          Reduced-motion: outer collapses to auto height, section
+          reverts to normal flow (no sticky).                  */}
+      <div className="hero-outer">
       <section
-        className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
+        className="relative hero-sticky flex flex-col items-center justify-center px-6"
         style={{ background: "#0a1929" }}
       >
         {/* Scroll-zoom image + fade-to-black overlay (client component) */}
@@ -119,6 +121,7 @@ export default function Home() {
           </Link>
         </div>
       </section>
+      </div>{/* end hero-outer */}
 
       {/* ── 2. Credentials strip ────────────────────────── */}
       {/* Black background continues seamlessly from the hero fade-to-black */}

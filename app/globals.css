@@ -31,6 +31,27 @@ body {
   color: #1D1D1B;
 }
 
+/* ── Hero scroll-jack container ─────────────────────────
+   Outer div is 200vh so the sticky hero has 100vh of scroll
+   "budget" to play the zoom + fade animation. After the outer
+   div scrolls past, the sticky section un-pins and the next
+   section comes into view normally.
+   Reduced-motion: restore normal flow, no sticky.             */
+.hero-outer {
+  position: relative;
+  height: 200vh;
+}
+.hero-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-outer  { height: auto; }
+  .hero-sticky { position: relative; min-height: 100vh; height: auto; overflow: visible; }
+}
+
 /* ── Hero sequence ─────────────────────────────────────
    D: 0ms  J: 533ms  E: 1066ms (done ~1466ms) → hold 300ms
    → rect draws: 1766ms / 2000ms  (done ~3766ms) → hold 800ms
