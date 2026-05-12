@@ -16,37 +16,45 @@ export default function FadeInSection({ children, className, style }: Props) {
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    // Inline style wins over all CSS — section is invisible immediately
     el.style.opacity = "0";
 
-    let raf = 0;
-    let done = false;
+    let rafId = 0;
+    let active = true;
 
-    function update() {
-      if (done) return;
+    function tick() {
+      rafId = 0;
+      if (!active) return;
+
       const rect = el!.getBoundingClientRect();
-      // Fade from 0→1 as element's top travels from viewport bottom to 50vh above it
-      const progress = Math.min(
-        Math.max((window.innerHeight - rect.top) / (0.5 * window.innerHeight), 0),
-        1
-      );
+      const vh = window.innerHeight;
+      // 0 when section top is at/below viewport bottom
+      // 1 when section top is 50vh above the viewport bottom
+      const progress = Math.min(Math.max((vh - rect.top) / (vh * 0.5), 0), 1);
       el!.style.opacity = String(progress);
+
       if (progress >= 1) {
-        done = true;
-        el!.style.opacity = "";
+        active = false;
         window.removeEventListener("scroll", onScroll);
+        // opacity is already "1" from String(1) — no need to reset
       }
-      raf = 0;
     }
 
     function onScroll() {
-      if (!raf) raf = requestAnimationFrame(update);
+      if (!rafId) rafId = requestAnimationFrame(tick);
     }
 
-    update();
+    // Defer the first read to the next paint frame.
+    // Calling getBoundingClientRect() synchronously in useEffect can return
+    // a stale value if the sticky-container layout hasn't fully settled after
+    // hydration, causing progress to snap to 1 and the fade to never play.
+    rafId = requestAnimationFrame(tick);
     window.addEventListener("scroll", onScroll, { passive: true });
+
     return () => {
+      active = false;
+      cancelAnimationFrame(rafId);
       window.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(raf);
     };
   }, []);
 
