@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import HeroWordmark from "@/components/HeroWordmark";
 import HeroScrollEffect from "@/components/HeroScrollEffect";
-import FadeInSection from "@/components/FadeInSection";
+import RevealSection from "@/components/RevealSection";
 import Reveal from "@/components/Reveal";
 import { team } from "@/lib/team";
 import { blogPosts } from "@/lib/blog";
@@ -125,11 +125,13 @@ export default function Home() {
       </div>{/* end hero-outer */}
 
       {/* ── 2. Credentials strip ────────────────────────── */}
-      {/* Fades in from black as user scrolls past the hero. FadeInSection
-          starts at opacity 0 and transitions to 1 over ~50vh of scroll.
-          Black background matches the hero's fade-to-black overlay exactly. */}
-      <FadeInSection
-        className="py-5 px-6"
+      {/* Pins in place (sticky, 200vh outer container) so the screen stays
+          still while content fades in from black — matching the hero's exit.
+          Black overlay fades out as content fades in over the first 50vh of
+          sticky scroll; the second 50vh holds fully revealed before normal
+          scroll resumes with the Services section. */}
+      <RevealSection
+        className="px-6"
         style={{ backgroundColor: "#000000", borderBottom: "1px solid rgba(255,255,255,0.08)" }}
       >
         <div className="max-w-5xl mx-auto flex flex-wrap justify-center items-center gap-x-5 gap-y-2">
@@ -144,7 +146,7 @@ export default function Home() {
             </span>
           ))}
         </div>
-      </FadeInSection>
+      </RevealSection>
 
       {/* ── 3. Services ─────────────────────────────────── */}
       <section className="bg-canvas py-28 px-6 border-b border-border">
