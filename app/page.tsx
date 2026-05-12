@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import HeroWordmark from "@/components/HeroWordmark";
 import Reveal from "@/components/Reveal";
 import { team } from "@/lib/team";
 import { blogPosts } from "@/lib/blog";
@@ -62,60 +63,56 @@ export default function Home() {
           Two very low-opacity cyan radial blobs breathe gently.
           Place /public/logo.png to activate logo image.       */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-canvas">
-        {/* Blob A — cyan, upper-right */}
+        {/* Blob A — cyan, upper-right (reduced to ~9% effective) */}
         <div
           className="hero-breathe-a absolute w-[700px] h-[700px] -top-40 -right-40 rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, rgba(0,167,225,0.16) 0%, transparent 65%)",
+              "radial-gradient(circle, rgba(0,167,225,0.12) 0%, transparent 65%)",
           }}
           aria-hidden="true"
         />
-        {/* Blob B — cyan, lower-left */}
+        {/* Blob B — cyan, lower-left (reduced to ~6% effective) */}
         <div
           className="hero-breathe-b absolute w-[860px] h-[860px] -bottom-48 -left-48 rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, rgba(0,167,225,0.10) 0%, transparent 65%)",
+              "radial-gradient(circle, rgba(0,167,225,0.08) 0%, transparent 65%)",
           }}
           aria-hidden="true"
         />
 
         {/* Content */}
-        <div className="relative z-10 max-w-4xl mx-auto px-6 py-36 text-center">
-          {/* Logo — /public/logo.png */}
-          <Reveal>
-            <div className="mb-8">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/logo.png"
-                alt="DJE Advisors"
-                className="mx-auto object-contain"
-                style={{ width: "clamp(200px, 30vw, 320px)" }}
-              />
-            </div>
-          </Reveal>
+        <div className="relative z-10 max-w-3xl mx-auto px-6 py-36 text-center">
+          {/* Animated typographic wordmark */}
+          <div className="mb-10">
+            <HeroWordmark />
+          </div>
 
-          {/* Tagline */}
-          <Reveal delay={0.08}>
-            <p
-              className="font-sans text-ink/55 mx-auto leading-relaxed mb-12"
-              style={{ fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)", maxWidth: "38ch" }}
-            >
-              Tax, planning, and the person on the other end of the phone.
-            </p>
-          </Reveal>
+          {/* Body paragraph */}
+          <p
+            className="font-sans mx-auto leading-relaxed mb-10"
+            style={{
+              fontSize: "clamp(0.9rem, 1.6vw, 1rem)",
+              color: "#5a5a58",
+              maxWidth: "600px",
+            }}
+          >
+            Trusted Partner in Tax and Accounting. DJE Advisors is an
+            independent tax and accounting firm serving business owners,
+            individuals, and families. As an independent firm, we are solely
+            an advocate for you, providing solutions that meet your needs in a
+            continually changing environment.
+          </p>
 
           {/* Primary CTA */}
-          <Reveal delay={0.15}>
-            <Link
-              href="/contact"
-              className="inline-block font-sans font-semibold bg-cyan text-white rounded-sm hover:opacity-90 transition-opacity duration-150"
-              style={{ fontSize: "1rem", letterSpacing: "0.01em", padding: "1.1rem 3rem" }}
-            >
-              Contact Us Today
-            </Link>
-          </Reveal>
+          <Link
+            href="/contact"
+            className="inline-block font-sans font-semibold bg-cyan text-white rounded-sm hover:opacity-90 transition-opacity duration-150"
+            style={{ fontSize: "1rem", letterSpacing: "0.01em", padding: "1.1rem 3rem" }}
+          >
+            Contact Us Today
+          </Link>
         </div>
       </section>
 

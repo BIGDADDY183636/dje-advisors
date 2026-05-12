@@ -40,19 +40,19 @@ body {
    Two radial blobs pulsing at different rates/phases.
    Uses cyan brand color at very low opacity on white.   */
 @keyframes hero-breathe-a {
-  0%, 100% { opacity: 0.55; transform: scale(1)    translate(0,    0   ); }
-  50%       { opacity: 1;    transform: scale(1.08) translate(-2%, 1.5%); }
+  0%, 100% { opacity: 0.50; transform: scale(1)    translate(0,    0   ); }
+  50%       { opacity: 0.85; transform: scale(1.07) translate(-2%, 1.5%); }
 }
 @keyframes hero-breathe-b {
-  0%, 100% { opacity: 0.40; transform: scale(1.04) translate(0,    0   ); }
-  50%       { opacity: 0.80; transform: scale(0.96) translate( 2%, -2% ); }
+  0%, 100% { opacity: 0.35; transform: scale(1.04) translate(0,    0   ); }
+  50%       { opacity: 0.70; transform: scale(0.96) translate( 2%, -2% ); }
 }
 
 .hero-breathe-a {
-  animation: hero-breathe-a 11s ease-in-out infinite;
+  animation: hero-breathe-a 17s ease-in-out infinite;
 }
 .hero-breathe-b {
-  animation: hero-breathe-b 15s ease-in-out infinite 3s;
+  animation: hero-breathe-b 22s ease-in-out infinite 4s;
 }
 
 @media (prefers-reduced-motion: reduce) {
