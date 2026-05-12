@@ -24,7 +24,7 @@ export default function HeroScrollEffect() {
       // translateY pushes image down so sky (top) comes into view — "flying up"
       // scale 1→2 zooms in simultaneously from center
       const translateY = progress * 40; // vh
-      const scale = 1 + progress * 1;   // 1 → 2
+      const scale = 1 + progress * 2;   // 1 → 3
       imgWrap!.style.transform = `translateY(${translateY}vh) scale(${scale})`;
       black!.style.opacity = String(progress);
       raf = 0;
@@ -45,13 +45,13 @@ export default function HeroScrollEffect() {
 
   return (
     <>
-      {/* Background image — translateY + scale on scroll, transform-origin center */}
+      {/* Background image — translateY + scale on scroll, transform-origin center top */}
       <div
         ref={imgWrapRef}
         style={{
           position: "absolute",
           inset: 0,
-          transformOrigin: "center",
+          transformOrigin: "center top",
           willChange: "transform",
           zIndex: 0,
         }}
@@ -61,7 +61,7 @@ export default function HeroScrollEffect() {
           alt=""
           fill
           sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "center center" }}
+          style={{ objectFit: "cover", objectPosition: "center bottom" }}
           priority
         />
       </div>
