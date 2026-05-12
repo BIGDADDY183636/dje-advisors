@@ -10,6 +10,28 @@ export const metadata: Metadata = {
 
 const DISPLAY =
   '"Century Gothic Pro", "Century Gothic", "Avenir Next", "Avenir", system-ui, sans-serif';
+const SANS = '"Helvetica Neue", Helvetica, Arial, sans-serif';
+
+const testimonials = [
+  {
+    quote:
+      "David’s professionalism and domain expertise have been invaluable. I rely on him for all of my business and personal real estate tax needs.",
+    name: "Eytan Peer",
+    role: "Vice President, Oak Residential Partners",
+  },
+  {
+    quote:
+      "After partnering with David for over a decade I can say with extreme confidence that our business wouldn’t be where it is without his counsel. Whether we’re brainstorming strategic tax planning ideas, obtaining general business and accounting guidance, or filing our annual returns, David and his team have always been one of the critical pillars that has helped us to continually grow our market share year over year.",
+    name: "Scott Mayer",
+    role: "Founder, Bluesail Vacation Yachts & Sailing Academy",
+  },
+  {
+    quote:
+      "We cannot say enough wonderful things about DJE Advisors! David and Andy advocate for us in all areas of business, and have ensured personalized attention to our needs. Their hands-on approach feels like an extension of our team, and the value they provide is pronounced. No getting lost in the shuffle of a ‘big’ firm with DJE!",
+    name: "Jordan Kirshenbaum & Katherine Sanford",
+    role: "Partners, Prime Time Marketing",
+  },
+];
 
 export default function Home() {
   return (
@@ -140,6 +162,136 @@ export default function Home() {
           </Link>
         </div>
       </RevealSection>
+
+      {/* ── 3. Testimonials ── */}
+      <section
+        style={{
+          backgroundColor: "#ffffff",
+          borderTop: "1px solid #e5e5e3",
+          padding: "6rem 1.5rem",
+        }}
+      >
+        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
+          {/* Label */}
+          <p
+            style={{
+              fontFamily: SANS,
+              fontWeight: 500,
+              fontSize: "0.68rem",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              color: "#00A7E1",
+              marginBottom: "1.25rem",
+            }}
+          >
+            What Clients Say
+          </p>
+
+          {/* Headline */}
+          <h2
+            style={{
+              fontFamily: DISPLAY,
+              fontWeight: 700,
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              color: "#1D1D1B",
+              lineHeight: 1.15,
+              marginBottom: "3.5rem",
+              maxWidth: "22ch",
+            }}
+          >
+            Trusted by Industry Leaders &amp; Professionals
+          </h2>
+
+          {/* Cards */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 20rem), 1fr))",
+              gap: "1.75rem",
+            }}
+          >
+            {testimonials.map(({ quote, name, role }) => (
+              <div
+                key={name}
+                style={{
+                  backgroundColor: "#f6f6f4",
+                  border: "1px solid #e5e5e3",
+                  borderRadius: "0.125rem",
+                  padding: "2.25rem 2rem",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                {/* Opening quote mark */}
+                <div
+                  style={{
+                    fontFamily: DISPLAY,
+                    fontSize: "3.5rem",
+                    color: "#00A7E1",
+                    lineHeight: 1,
+                    marginBottom: "1rem",
+                    userSelect: "none",
+                  }}
+                  aria-hidden="true"
+                >
+                  &ldquo;
+                </div>
+
+                {/* Quote text */}
+                <p
+                  style={{
+                    fontFamily: SANS,
+                    fontSize: "0.9rem",
+                    color: "rgba(29,29,27,0.72)",
+                    lineHeight: 1.8,
+                    flex: 1,
+                    marginBottom: "2rem",
+                  }}
+                >
+                  {quote}
+                </p>
+
+                {/* Cyan accent line */}
+                <div
+                  style={{
+                    width: "2rem",
+                    height: "2px",
+                    backgroundColor: "#00A7E1",
+                    marginBottom: "0.875rem",
+                  }}
+                />
+
+                {/* Name */}
+                <p
+                  style={{
+                    fontFamily: DISPLAY,
+                    fontWeight: 700,
+                    fontSize: "0.72rem",
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    color: "#1D1D1B",
+                    marginBottom: "0.25rem",
+                  }}
+                >
+                  {name}
+                </p>
+
+                {/* Role */}
+                <p
+                  style={{
+                    fontFamily: SANS,
+                    fontSize: "0.75rem",
+                    color: "rgba(29,29,27,0.42)",
+                    lineHeight: 1.4,
+                  }}
+                >
+                  {role}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
