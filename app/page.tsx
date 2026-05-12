@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import HeroWordmark from "@/components/HeroWordmark";
 import HeroScrollEffect from "@/components/HeroScrollEffect";
+import FadeInSection from "@/components/FadeInSection";
 import Reveal from "@/components/Reveal";
 import { team } from "@/lib/team";
 import { blogPosts } from "@/lib/blog";
@@ -124,8 +125,10 @@ export default function Home() {
       </div>{/* end hero-outer */}
 
       {/* ── 2. Credentials strip ────────────────────────── */}
-      {/* Black background continues seamlessly from the hero fade-to-black */}
-      <section
+      {/* Fades in from black as user scrolls past the hero. FadeInSection
+          starts at opacity 0 and transitions to 1 over ~50vh of scroll.
+          Black background matches the hero's fade-to-black overlay exactly. */}
+      <FadeInSection
         className="py-5 px-6"
         style={{ backgroundColor: "#000000", borderBottom: "1px solid rgba(255,255,255,0.08)" }}
       >
@@ -141,7 +144,7 @@ export default function Home() {
             </span>
           ))}
         </div>
-      </section>
+      </FadeInSection>
 
       {/* ── 3. Services ─────────────────────────────────── */}
       <section className="bg-canvas py-28 px-6 border-b border-border">
