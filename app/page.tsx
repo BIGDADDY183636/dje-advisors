@@ -66,17 +66,17 @@ export default function Home() {
         className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
         style={{
           background:
-            "linear-gradient(135deg, #d4eff9 0%, #e8f6fc 50%, #ffffff 100%)",
+            "linear-gradient(135deg, #0a1929 0%, #112a44 50%, #0f2540 100%)",
         }}
       >
         {/* Stacked zone: wordmark and paragraph share the same grid cell.
-            The wordmark fades out as the paragraph fades in — clean crossfade.
-            The grid cell sizes to the paragraph (taller content wins). */}
+            Wordmark exits fully before paragraph appears — sequential, not crossfade.
+            Grid cell sizes to the paragraph (taller content wins). */}
         <div
           className="w-full max-w-3xl mx-auto mb-10"
           style={{ display: "grid" }}
         >
-          {/* Layer 1 — Wordmark (exits at 2.9s) */}
+          {/* Layer 1 — Wordmark (exits at 3.3s, fully gone 4.0s) */}
           <div
             className="hero-wordmark"
             style={{
@@ -91,7 +91,7 @@ export default function Home() {
             <HeroWordmark />
           </div>
 
-          {/* Layer 2 — Paragraph (enters at 2.7s) */}
+          {/* Layer 2 — Paragraph (enters at 4.0s, after wordmark fully gone) */}
           <div
             className="hero-paragraph"
             style={{
@@ -106,7 +106,7 @@ export default function Home() {
               className="font-sans leading-relaxed text-center"
               style={{
                 fontSize: "clamp(0.9rem, 1.6vw, 1rem)",
-                color: "#5a5a58",
+                color: "rgba(255,255,255,0.85)",
                 maxWidth: "600px",
               }}
             >
@@ -119,7 +119,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* CTA — enters at 2.9s alongside wordmark exit */}
+        {/* CTA — enters at 4.2s, after paragraph */}
         <Link
           href="/contact"
           className="hero-cta-anim inline-block font-sans font-semibold bg-cyan text-white rounded-sm hover:opacity-90"
