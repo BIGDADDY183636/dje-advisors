@@ -31,13 +31,12 @@ body {
   color: #1D1D1B;
 }
 
-/* ── Hero wordmark entrance + exit sequence ───────────
-   D:0ms  J:533ms  E:1066ms (done ~1.5s) → hold 300ms
-   → oval-D: 1766ms/1000ms  → oval-J: 2766ms/1000ms
-   → oval-E: 3766ms/1000ms  → hold 500ms
-   → rect:   5266ms/1500ms  (done ~6766ms) → hold 800ms
-   → wordmark-exit: 7566ms/1200ms
-   → paragraph: 8766ms/500ms  → CTA: 9266ms/300ms     */
+/* ── Hero sequence ─────────────────────────────────────
+   D: 0ms  J: 533ms  E: 1066ms (done ~1466ms) → hold 300ms
+   → rect draws: 1766ms / 2000ms  (done ~3766ms) → hold 800ms
+   → letters out: 4566ms / 800ms  (done ~5366ms)
+   → headline in: 5366ms / 600ms  (done ~5966ms) → hold 600ms
+   → paragraph:   6566ms / 500ms  → CTA: 7066ms / 300ms        */
 
 @keyframes letter-drop-in {
   from { opacity: 0; transform: translateY(-60px); }
@@ -51,7 +50,7 @@ body {
   from { stroke-dashoffset: 1; }
   to   { stroke-dashoffset: 0; }
 }
-@keyframes wordmark-exit {
+@keyframes fade-out {
   from { opacity: 1; }
   to   { opacity: 0; }
 }
@@ -60,41 +59,32 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Letters */
+/* Letters drop in sequentially */
 .hero-letter-d { animation: letter-drop-in 400ms cubic-bezier(0.16,1,0.3,1)    0ms both; }
 .hero-letter-j { animation: letter-drop-in 400ms cubic-bezier(0.16,1,0.3,1)  533ms both; }
 .hero-letter-e { animation: letter-drop-in 400ms cubic-bezier(0.16,1,0.3,1) 1066ms both; }
 
-/* Ovals + rectangle — initial hidden state */
-.hero-oval-d-path,
-.hero-oval-j-path,
-.hero-oval-e-path,
+/* Rectangle draws on, then persists */
 .hero-rect-path {
   stroke-dasharray:  1;
   stroke-dashoffset: 1;
+  animation: stroke-draw 2000ms ease-in-out 1766ms both;
 }
 
-/* Sequential oval draws, then rectangle */
-.hero-oval-d-path { animation: stroke-draw 1000ms ease-in-out 1766ms both; }
-.hero-oval-j-path { animation: stroke-draw 1000ms ease-in-out 2766ms both; }
-.hero-oval-e-path { animation: stroke-draw 1000ms ease-in-out 3766ms both; }
-.hero-rect-path   { animation: stroke-draw 1500ms ease-in-out 5266ms both; }
+/* Letters fade out, headline + content fade in */
+.hero-letters-exit { animation: fade-out          800ms ease  4566ms both; }
+.hero-headline     { animation: hero-content-enter 600ms ease  5366ms both; }
+.hero-paragraph    { animation: hero-content-enter 500ms ease  6566ms both; }
+.hero-cta-anim     { animation: hero-content-enter 300ms ease  7066ms both; }
 
-/* Wordmark exit, then paragraph + CTA enter */
-.hero-wordmark  { animation: wordmark-exit      1200ms ease  7566ms both; }
-.hero-paragraph { animation: hero-content-enter  500ms ease  8766ms both; }
-.hero-cta-anim  { animation: hero-content-enter  300ms ease  9266ms both; }
-
-/* Reduced motion: wordmark hidden, paragraph + CTA instantly visible */
+/* Reduced motion: skip to final state */
 @media (prefers-reduced-motion: reduce) {
-  .hero-wordmark { display: none; }
+  .hero-letters-exit { opacity: 0; animation: none; }
+  .hero-rect-path    { stroke-dashoffset: 0; animation: none; }
+  .hero-headline,
   .hero-paragraph,
-  .hero-cta-anim { animation: none; }
+  .hero-cta-anim     { animation: none; }
   .hero-letter-d,
   .hero-letter-j,
-  .hero-letter-e,
-  .hero-oval-d-path,
-  .hero-oval-j-path,
-  .hero-oval-e-path,
-  .hero-rect-path { animation: none; }
+  .hero-letter-e     { animation: none; }
 }

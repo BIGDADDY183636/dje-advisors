@@ -69,61 +69,27 @@ export default function Home() {
             "linear-gradient(135deg, #0a1929 0%, #112a44 50%, #0f2540 100%)",
         }}
       >
-        {/* Stacked zone: wordmark and paragraph share the same grid cell.
-            Wordmark exits fully before paragraph appears — sequential, not crossfade.
-            Grid cell sizes to the paragraph (taller content wins). */}
-        <div
-          className="w-full max-w-3xl mx-auto mb-10"
-          style={{ display: "grid" }}
+        <HeroWordmark />
+
+        <p
+          className="hero-paragraph font-sans leading-relaxed text-center"
+          style={{
+            fontSize: "clamp(0.9rem, 1.6vw, 1rem)",
+            color: "rgba(255,255,255,0.85)",
+            maxWidth: "600px",
+            marginTop: "2.5rem",
+          }}
         >
-          {/* Layer 1 — Wordmark (exits at 3.3s, fully gone 4.0s) */}
-          <div
-            className="hero-wordmark"
-            style={{
-              gridArea: "1/1",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "2.5rem 1rem",
-              pointerEvents: "none",
-            }}
-          >
-            <HeroWordmark />
-          </div>
+          DJE Advisors is an independent tax and accounting firm serving
+          business owners, individuals, and families. As an independent firm,
+          we are solely an advocate for you, providing solutions that meet your
+          needs in a continually changing environment.
+        </p>
 
-          {/* Layer 2 — Paragraph (enters at 4.0s, after wordmark fully gone) */}
-          <div
-            className="hero-paragraph"
-            style={{
-              gridArea: "1/1",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "2.5rem 1rem",
-            }}
-          >
-            <p
-              className="font-sans leading-relaxed text-center"
-              style={{
-                fontSize: "clamp(0.9rem, 1.6vw, 1rem)",
-                color: "rgba(255,255,255,0.85)",
-                maxWidth: "600px",
-              }}
-            >
-              Trusted Partner in Tax and Accounting. DJE Advisors is an
-              independent tax and accounting firm serving business owners,
-              individuals, and families. As an independent firm, we are solely
-              an advocate for you, providing solutions that meet your needs in
-              a continually changing environment.
-            </p>
-          </div>
-        </div>
-
-        {/* CTA — enters at 4.2s, after paragraph */}
         <Link
           href="/contact"
           className="hero-cta-anim inline-block font-sans font-semibold bg-cyan text-white rounded-sm hover:opacity-90"
-          style={{ fontSize: "1rem", letterSpacing: "0.01em", padding: "1.1rem 3rem" }}
+          style={{ fontSize: "1rem", letterSpacing: "0.01em", padding: "1.1rem 3rem", marginTop: "1.5rem" }}
         >
           Contact Us Today
         </Link>
