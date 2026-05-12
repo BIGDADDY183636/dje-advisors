@@ -166,8 +166,7 @@ export default function Home() {
       {/* ── 3. Testimonials ── */}
       <section
         style={{
-          backgroundColor: "#ffffff",
-          borderTop: "1px solid #e5e5e3",
+          background: "linear-gradient(135deg, #00A7E1 0%, #ffffff 100%)",
           padding: "6rem 1.5rem",
         }}
       >
@@ -214,8 +213,8 @@ export default function Home() {
               <div
                 key={name}
                 style={{
-                  backgroundColor: "#f6f6f4",
-                  border: "1px solid #e5e5e3",
+                  backgroundColor: "#1D1D1B",
+                  border: "1px solid rgba(255,255,255,0.08)",
                   borderRadius: "0.125rem",
                   padding: "2.25rem 2rem",
                   display: "flex",
@@ -242,7 +241,7 @@ export default function Home() {
                   style={{
                     fontFamily: SANS,
                     fontSize: "0.9rem",
-                    color: "rgba(29,29,27,0.72)",
+                    color: "rgba(255,255,255,0.95)",
                     lineHeight: 1.8,
                     flex: 1,
                     marginBottom: "2rem",
@@ -269,7 +268,7 @@ export default function Home() {
                     fontSize: "0.72rem",
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
-                    color: "#1D1D1B",
+                    color: "#ffffff",
                     marginBottom: "0.25rem",
                   }}
                 >
@@ -281,7 +280,7 @@ export default function Home() {
                   style={{
                     fontFamily: SANS,
                     fontSize: "0.75rem",
-                    color: "rgba(29,29,27,0.42)",
+                    color: "rgba(255,255,255,0.6)",
                     lineHeight: 1.4,
                   }}
                 >
