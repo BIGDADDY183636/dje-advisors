@@ -6,7 +6,7 @@ const FAMILY =
 
 export default function HeroWordmark() {
   return (
-    <div aria-label="DJE ADVISORS" style={{ textAlign: "center", userSelect: "none" }}>
+    <div aria-label="DJE" style={{ textAlign: "center", userSelect: "none" }}>
       {/* D J E — letters drop in sequentially */}
       <div
         style={{
@@ -57,47 +57,48 @@ export default function HeroWordmark() {
           E
         </span>
 
-        {/* Wavy cyan line — draws left-to-right after letters land */}
+        {/* Cyan line: single path — diagonal from top-right → bottom-left,
+            then traces the rectangle frame around DJE.
+            pathLength="1" normalises total length so dasharray/dashoffset
+            can be expressed as fractions (0–1) without JS getTotalLength(). */}
         <div
-          className="hero-line-draw"
           style={{
             position: "absolute",
-            top: "32%",
-            left: 0,
-            right: 0,
+            top: "-12px",
+            left: "-24px",
+            right: "-24px",
+            bottom: "-12px",
             pointerEvents: "none",
           }}
         >
           <svg
-            viewBox="0 0 800 28"
+            viewBox="0 0 400 100"
             preserveAspectRatio="none"
-            style={{ width: "100%", height: "28px", display: "block" }}
+            style={{ width: "100%", height: "100%", overflow: "visible" }}
             aria-hidden="true"
           >
+            {/*
+              Path sequence:
+              1. M 390 8     — start: top-right corner
+              2. C … 10 92   — cubic bezier diagonally to bottom-left
+              3. L 390 92    — bottom edge: left → right
+              4. L 390 8     — right edge: bottom → top (back to start)
+              5. L 10 8      — top edge: right → left
+              6. L 10 92     — left edge: top → bottom (completes rectangle)
+            */}
             <path
-              d="M 0 14 C 67 4, 133 24, 200 14 C 267 4, 333 24, 400 14 C 467 4, 533 24, 600 14 C 667 4, 733 24, 800 14"
+              className="hero-line-path"
+              d="M 390 8 C 300 20, 100 80, 10 92 L 390 92 L 390 8 L 10 8 L 10 92"
               fill="none"
               stroke="#00A7E1"
               strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              pathLength="1"
               vectorEffect="non-scaling-stroke"
             />
           </svg>
         </div>
-      </div>
-
-      {/* ADVISORS — fades up after DJE assembles */}
-      <div
-        className="hero-advisors"
-        style={{
-          fontFamily: FAMILY,
-          fontWeight: 400,
-          color: "#ffffff",
-          letterSpacing: "0.28em",
-          fontSize: "clamp(0.75rem, 2vw, 1.1rem)",
-          marginTop: "0.45rem",
-        }}
-      >
-        ADVISORS
       </div>
     </div>
   );
