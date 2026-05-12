@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import HeroWordmark from "@/components/HeroWordmark";
+import HeroScrollEffect from "@/components/HeroScrollEffect";
 import Reveal from "@/components/Reveal";
 import { team } from "@/lib/team";
 import { blogPosts } from "@/lib/blog";
@@ -64,47 +65,75 @@ export default function Home() {
           Paragraph crossfades in during wordmark exit.     */}
       <section
         className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
-        style={{
-          background:
-            "linear-gradient(135deg, #0a1929 0%, #112a44 50%, #0f2540 100%)",
-        }}
+        style={{ background: "#0a1929" }}
       >
-        <HeroWordmark />
+        {/* Scroll-zoom image + fade-to-black overlay (client component) */}
+        <HeroScrollEffect />
 
-        <p
-          className="hero-paragraph font-sans leading-relaxed text-center"
+        {/* Always-on dark navy gradient over the image — keeps text readable */}
+        <div
           style={{
-            fontSize: "clamp(0.9rem, 1.6vw, 1rem)",
-            color: "rgba(255,255,255,0.85)",
-            maxWidth: "600px",
-            marginTop: "2.5rem",
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(135deg, rgba(10,25,41,0.72) 0%, rgba(17,42,68,0.68) 50%, rgba(15,37,64,0.72) 100%)",
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Hero content — above gradient (z-2), below scroll-fade overlay (z-10) */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%",
           }}
         >
-          DJE Advisors is an independent tax and accounting firm serving
-          business owners, individuals, and families. As an independent firm,
-          we are solely an advocate for you, providing solutions that meet your
-          needs in a continually changing environment.
-        </p>
+          <HeroWordmark />
 
-        <Link
-          href="/contact"
-          className="hero-cta-anim inline-block font-sans font-semibold bg-cyan text-white rounded-sm hover:opacity-90"
-          style={{ fontSize: "1rem", letterSpacing: "0.01em", padding: "1.1rem 3rem", marginTop: "1.5rem" }}
-        >
-          Contact Us Today
-        </Link>
+          <p
+            className="hero-paragraph font-sans leading-relaxed text-center"
+            style={{
+              fontSize: "clamp(0.9rem, 1.6vw, 1rem)",
+              color: "rgba(255,255,255,0.85)",
+              maxWidth: "600px",
+              marginTop: "2.5rem",
+            }}
+          >
+            DJE Advisors is an independent tax and accounting firm serving
+            business owners, individuals, and families. As an independent firm,
+            we are solely an advocate for you, providing solutions that meet your
+            needs in a continually changing environment.
+          </p>
+
+          <Link
+            href="/contact"
+            className="hero-cta-anim inline-block font-sans font-semibold bg-cyan text-white rounded-sm hover:opacity-90"
+            style={{ fontSize: "1rem", letterSpacing: "0.01em", padding: "1.1rem 3rem", marginTop: "1.5rem" }}
+          >
+            Contact Us Today
+          </Link>
+        </div>
       </section>
 
       {/* ── 2. Credentials strip ────────────────────────── */}
-      <section className="bg-canvas border-y border-border py-5 px-6">
+      {/* Black background continues seamlessly from the hero fade-to-black */}
+      <section
+        className="py-5 px-6"
+        style={{ backgroundColor: "#000000", borderBottom: "1px solid rgba(255,255,255,0.08)" }}
+      >
         <div className="max-w-5xl mx-auto flex flex-wrap justify-center items-center gap-x-5 gap-y-2">
           {credentials.map((c, i) => (
             <span key={c} className="flex items-center gap-5">
-              <span className="font-sans text-[0.75rem] text-ink/45 tracking-wide">
+              <span className="font-sans text-[0.75rem] tracking-wide" style={{ color: "rgba(255,255,255,0.35)" }}>
                 {c}
               </span>
               {i < credentials.length - 1 && (
-                <span className="text-border select-none">·</span>
+                <span className="select-none" style={{ color: "rgba(255,255,255,0.15)" }}>·</span>
               )}
             </span>
           ))}
