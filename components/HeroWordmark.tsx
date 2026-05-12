@@ -1,73 +1,113 @@
-// Server component — animation is CSS-only (globals.css).
-// No "use client" needed; no JavaScript state.
+// Server component — animation is CSS-only (globals.css). No "use client" needed.
 
 const FAMILY =
   '"Century Gothic Pro", "Century Gothic", "Avenir Next", "Avenir", system-ui, sans-serif';
 
+// Ellipse drawn counterclockwise via two half-arcs so pathLength="1" normalises it.
+function LetterOval({ pathClass }: { pathClass: string }) {
+  return (
+    <svg
+      style={{
+        position: "absolute",
+        top: "-0.2em",
+        left: "-0.2em",
+        right: "-0.2em",
+        bottom: "-0.2em",
+        overflow: "visible",
+        pointerEvents: "none",
+      }}
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path
+        className={pathClass}
+        d="M 97 50 A 47 47 0 1 0 3 50 A 47 47 0 1 0 97 50"
+        fill="none"
+        stroke="#00A7E1"
+        strokeWidth="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        pathLength="1"
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  );
+}
+
 export default function HeroWordmark() {
   return (
     <div aria-label="DJE" style={{ textAlign: "center", userSelect: "none" }}>
-      {/* D J E — letters drop in sequentially */}
+      {/* font-size on this container so all child em units resolve to it */}
       <div
         style={{
           display: "flex",
           justifyContent: "center",
           alignItems: "baseline",
-          gap: "0.01em",
+          gap: "0.05em",
           position: "relative",
+          fontSize: "clamp(6rem, 15vw, 12rem)",
         }}
       >
-        <span
-          className="hero-letter-d"
-          style={{
-            fontFamily: FAMILY,
-            fontWeight: 400,
-            fontSize: "clamp(4rem, 11vw, 8rem)",
-            color: "#ffffff",
-            lineHeight: 1,
-            display: "inline-block",
-          }}
-        >
-          D
-        </span>
-        <span
-          className="hero-letter-j"
-          style={{
-            fontFamily: FAMILY,
-            fontWeight: 400,
-            fontSize: "clamp(4rem, 11vw, 8rem)",
-            color: "#ffffff",
-            lineHeight: 1,
-            display: "inline-block",
-          }}
-        >
-          J
-        </span>
-        <span
-          className="hero-letter-e"
-          style={{
-            fontFamily: FAMILY,
-            fontWeight: 400,
-            fontSize: "clamp(4rem, 11vw, 8rem)",
-            color: "#ffffff",
-            lineHeight: 1,
-            display: "inline-block",
-          }}
-        >
-          E
+        {/* D */}
+        <span style={{ display: "inline-block", position: "relative" }}>
+          <span
+            className="hero-letter-d"
+            style={{
+              fontFamily: FAMILY,
+              fontWeight: 400,
+              color: "#ffffff",
+              lineHeight: 1,
+              display: "inline-block",
+            }}
+          >
+            D
+          </span>
+          <LetterOval pathClass="hero-oval-d-path" />
         </span>
 
-        {/* Cyan line: single path — diagonal from top-right → bottom-left,
-            then traces the rectangle frame around DJE.
-            pathLength="1" normalises total length so dasharray/dashoffset
-            can be expressed as fractions (0–1) without JS getTotalLength(). */}
+        {/* J */}
+        <span style={{ display: "inline-block", position: "relative" }}>
+          <span
+            className="hero-letter-j"
+            style={{
+              fontFamily: FAMILY,
+              fontWeight: 400,
+              color: "#ffffff",
+              lineHeight: 1,
+              display: "inline-block",
+            }}
+          >
+            J
+          </span>
+          <LetterOval pathClass="hero-oval-j-path" />
+        </span>
+
+        {/* E */}
+        <span style={{ display: "inline-block", position: "relative" }}>
+          <span
+            className="hero-letter-e"
+            style={{
+              fontFamily: FAMILY,
+              fontWeight: 400,
+              color: "#ffffff",
+              lineHeight: 1,
+              display: "inline-block",
+            }}
+          >
+            E
+          </span>
+          <LetterOval pathClass="hero-oval-e-path" />
+        </span>
+
+        {/* Outer rectangle — em units resolve to the container font-size */}
         <div
           style={{
             position: "absolute",
-            top: "-12px",
-            left: "-24px",
-            right: "-24px",
-            bottom: "-12px",
+            top: "-0.4em",
+            left: "-0.35em",
+            right: "-0.35em",
+            bottom: "-0.4em",
             pointerEvents: "none",
           }}
         >
@@ -77,18 +117,9 @@ export default function HeroWordmark() {
             style={{ width: "100%", height: "100%", overflow: "visible" }}
             aria-hidden="true"
           >
-            {/*
-              Path sequence:
-              1. M 390 8     — start: top-right corner
-              2. C … 10 92   — cubic bezier diagonally to bottom-left
-              3. L 390 92    — bottom edge: left → right
-              4. L 390 8     — right edge: bottom → top (back to start)
-              5. L 10 8      — top edge: right → left
-              6. L 10 92     — left edge: top → bottom (completes rectangle)
-            */}
             <path
-              className="hero-line-path"
-              d="M 390 8 C 300 20, 100 80, 10 92 L 390 92 L 390 8 L 10 8 L 10 92"
+              className="hero-rect-path"
+              d="M 10 10 L 390 10 L 390 90 L 10 90 Z"
               fill="none"
               stroke="#00A7E1"
               strokeWidth="4"

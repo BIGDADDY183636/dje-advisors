@@ -10,13 +10,8 @@
   --color-cyan-pale:    #cfeefc;
 
   /* ── Typography ──────────────────────────────────── */
-  /* Century Gothic Pro is a licensed font.
-     Fallback chain: Century Gothic (Windows/Mac system) →
-     Avenir Next (Apple) → system-ui                      */
   --font-display: "Century Gothic Pro", "Century Gothic", "Avenir Next",
                   "Avenir", system-ui, sans-serif;
-
-  /* Helvetica Neue → Helvetica → Arial for body          */
   --font-sans:    "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -37,10 +32,12 @@ body {
 }
 
 /* ── Hero wordmark entrance + exit sequence ───────────
-   D falls (0ms) → J (533ms) → E (1066ms, done 1466ms)
-   → hold 300ms → cyan line draws (1766ms, 3500ms draw)
-   → hold 800ms → everything fades out (6066ms, 1200ms)
-   → paragraph (7266ms, 500ms) → CTA (7766ms, 300ms)  */
+   D:0ms  J:533ms  E:1066ms (done ~1.5s) → hold 300ms
+   → oval-D: 1766ms/1000ms  → oval-J: 2766ms/1000ms
+   → oval-E: 3766ms/1000ms  → hold 500ms
+   → rect:   5266ms/1500ms  (done ~6766ms) → hold 800ms
+   → wordmark-exit: 7566ms/1200ms
+   → paragraph: 8766ms/500ms  → CTA: 9266ms/300ms     */
 
 @keyframes letter-drop-in {
   from { opacity: 0; transform: translateY(-60px); }
@@ -50,7 +47,7 @@ body {
     text-shadow: 0 0 40px rgba(0,167,225,0.45), 0 0 80px rgba(0,167,225,0.2);
   }
 }
-@keyframes line-draw-full {
+@keyframes stroke-draw {
   from { stroke-dashoffset: 1; }
   to   { stroke-dashoffset: 0; }
 }
@@ -63,28 +60,41 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Individual timings */
-.hero-letter-d  { animation: letter-drop-in     400ms cubic-bezier(0.16,1,0.3,1)    0ms both; }
-.hero-letter-j  { animation: letter-drop-in     400ms cubic-bezier(0.16,1,0.3,1)  533ms both; }
-.hero-letter-e  { animation: letter-drop-in     400ms cubic-bezier(0.16,1,0.3,1) 1066ms both; }
-.hero-line-path {
+/* Letters */
+.hero-letter-d { animation: letter-drop-in 400ms cubic-bezier(0.16,1,0.3,1)    0ms both; }
+.hero-letter-j { animation: letter-drop-in 400ms cubic-bezier(0.16,1,0.3,1)  533ms both; }
+.hero-letter-e { animation: letter-drop-in 400ms cubic-bezier(0.16,1,0.3,1) 1066ms both; }
+
+/* Ovals + rectangle — initial hidden state */
+.hero-oval-d-path,
+.hero-oval-j-path,
+.hero-oval-e-path,
+.hero-rect-path {
   stroke-dasharray:  1;
   stroke-dashoffset: 1;
-  animation: line-draw-full 3500ms ease-in-out 1766ms both;
 }
-/* Entire wordmark (letters + line) fades out together */
-.hero-wordmark  { animation: wordmark-exit      1200ms ease                       6066ms both; }
-/* Paragraph + CTA — sequential after wordmark is fully gone */
-.hero-paragraph { animation: hero-content-enter  500ms ease                       7266ms both; }
-.hero-cta-anim  { animation: hero-content-enter  300ms ease                       7766ms both; }
+
+/* Sequential oval draws, then rectangle */
+.hero-oval-d-path { animation: stroke-draw 1000ms ease-in-out 1766ms both; }
+.hero-oval-j-path { animation: stroke-draw 1000ms ease-in-out 2766ms both; }
+.hero-oval-e-path { animation: stroke-draw 1000ms ease-in-out 3766ms both; }
+.hero-rect-path   { animation: stroke-draw 1500ms ease-in-out 5266ms both; }
+
+/* Wordmark exit, then paragraph + CTA enter */
+.hero-wordmark  { animation: wordmark-exit      1200ms ease  7566ms both; }
+.hero-paragraph { animation: hero-content-enter  500ms ease  8766ms both; }
+.hero-cta-anim  { animation: hero-content-enter  300ms ease  9266ms both; }
 
 /* Reduced motion: wordmark hidden, paragraph + CTA instantly visible */
 @media (prefers-reduced-motion: reduce) {
-  .hero-wordmark  { display: none; }
+  .hero-wordmark { display: none; }
   .hero-paragraph,
-  .hero-cta-anim  { animation: none; }
+  .hero-cta-anim { animation: none; }
   .hero-letter-d,
   .hero-letter-j,
   .hero-letter-e,
-  .hero-line-path { animation: none; }
+  .hero-oval-d-path,
+  .hero-oval-j-path,
+  .hero-oval-e-path,
+  .hero-rect-path { animation: none; }
 }
