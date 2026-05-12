@@ -174,12 +174,13 @@ export default function Home() {
           {/* Label */}
           <p
             style={{
-              fontFamily: SANS,
-              fontWeight: 500,
-              fontSize: "0.68rem",
-              letterSpacing: "0.22em",
+              fontFamily: DISPLAY,
+              fontWeight: 700,
+              fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
+              letterSpacing: "0.04em",
               textTransform: "uppercase",
               color: "#00A7E1",
+              lineHeight: 1.1,
               marginBottom: "1.25rem",
             }}
           >
