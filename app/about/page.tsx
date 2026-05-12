@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const DISPLAY =
   '"Century Gothic Pro", "Century Gothic", "Avenir Next", "Avenir", system-ui, sans-serif';
-
+// Names: first name + last initial only (demo build — no full names)
 const partners = [
   { initials: "DE", name: "David E.",   title: "Managing Partner" },
   { initials: "JC", name: "Juan C.",    title: "Partner" },
