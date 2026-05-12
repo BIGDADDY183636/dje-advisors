@@ -39,7 +39,7 @@ body {
    Reduced-motion: restore normal flow, no sticky.             */
 .hero-outer {
   position: relative;
-  height: 200vh;
+  height: 300vh;
 }
 .hero-sticky {
   position: sticky;

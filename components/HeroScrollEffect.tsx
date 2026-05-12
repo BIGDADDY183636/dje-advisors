@@ -20,20 +20,25 @@ export default function HeroScrollEffect() {
     let raf = 0;
 
     function update() {
-      // Outer container is 200vh; sticky hero pins for the first 100vh of scroll.
-      // progress 0→1 maps to scrollY 0→innerHeight.
-      const raw = Math.min(window.scrollY / window.innerHeight, 1);
+      // Outer container is 300vh; sticky hero pins for 200vh of scroll.
+      // progress 0→1 maps to scrollY 0→2*innerHeight.
+      const raw = Math.min(window.scrollY / (2 * window.innerHeight), 1);
 
-      // Phase 1 (raw 0→0.7): zoom plays, overlay fades to 0.5
-      // Phase 2 (raw 0.7→1): zoom locked at max, overlay continues to 1
-      const zoomP = Math.min(raw / 0.7, 1);
+      // Phase 1 (0→0.8): zoom plays, overlay fades to 0.7
+      // Phase 2 (0.8→0.9): zoom locked at max, overlay completes to 1
+      // Phase 3 (0.9→1.0): hold full black — pause before next section appears
+      const zoomP = Math.min(raw / 0.8, 1);
       const translateY = zoomP * 40; // 0→40vh
       const scale = 1 + zoomP * 2;  // 1→3
 
-      const overlayOpacity =
-        raw <= 0.7
-          ? (raw / 0.7) * 0.5
-          : 0.5 + ((raw - 0.7) / 0.3) * 0.5;
+      let overlayOpacity: number;
+      if (raw <= 0.8) {
+        overlayOpacity = (raw / 0.8) * 0.7;
+      } else if (raw <= 0.9) {
+        overlayOpacity = 0.7 + ((raw - 0.8) / 0.1) * 0.3;
+      } else {
+        overlayOpacity = 1;
+      }
 
       imgWrap!.style.transform = `translateY(${translateY}vh) scale(${scale})`;
       black!.style.opacity = String(overlayOpacity);
@@ -61,7 +66,7 @@ export default function HeroScrollEffect() {
         style={{
           position: "absolute",
           inset: 0,
-          transformOrigin: "center top",
+          transformOrigin: "50% 30%",
           willChange: "transform",
           zIndex: 0,
         }}
