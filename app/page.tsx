@@ -16,20 +16,20 @@ const testimonials = [
   {
     quote:
       "David’s professionalism and domain expertise have been invaluable. I rely on him for all of my business and personal real estate tax needs.",
-    name: "Eytan Peer",
-    role: "Vice President, Oak Residential Partners",
+    name: "E.P.",
+    role: "Real Estate Executive",
   },
   {
     quote:
       "After partnering with David for over a decade I can say with extreme confidence that our business wouldn’t be where it is without his counsel. Whether we’re brainstorming strategic tax planning ideas, obtaining general business and accounting guidance, or filing our annual returns, David and his team have always been one of the critical pillars that has helped us to continually grow our market share year over year.",
-    name: "Scott Mayer",
-    role: "Founder, Bluesail Vacation Yachts & Sailing Academy",
+    name: "S.M.",
+    role: "Business Founder",
   },
   {
     quote:
       "We cannot say enough wonderful things about DJE Advisors! David and Andy advocate for us in all areas of business, and have ensured personalized attention to our needs. Their hands-on approach feels like an extension of our team, and the value they provide is pronounced. No getting lost in the shuffle of a ‘big’ firm with DJE!",
-    name: "Jordan Kirshenbaum & Katherine Sanford",
-    role: "Partners, Prime Time Marketing",
+    name: "J.K. & K.S.",
+    role: "Marketing Partners",
   },
 ];
 

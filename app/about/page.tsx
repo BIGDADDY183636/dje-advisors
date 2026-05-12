@@ -12,22 +12,22 @@ const DISPLAY =
   '"Century Gothic Pro", "Century Gothic", "Avenir Next", "Avenir", system-ui, sans-serif';
 
 const partners = [
-  { initials: "DE", name: "David Elyashar",  title: "Managing Partner" },
-  { initials: "JC", name: "Juan Castillo",   title: "Partner" },
-  { initials: "KF", name: "Kathy Famulka",   title: "Partner at Accounting solutionZ" },
-  { initials: "AZ", name: "Andy Zarycki",    title: "President of Accounting solutionZ" },
+  { initials: "DE", name: "David E.",   title: "Managing Partner" },
+  { initials: "JC", name: "Juan C.",    title: "Partner" },
+  { initials: "KF", name: "Kathy F.",   title: "Partner at Accounting solutionZ" },
+  { initials: "AZ", name: "Andy Z.",    title: "President of Accounting solutionZ" },
 ];
 
 const people = [
-  { initials: "MA", name: "Margaret Ascher",  title: "Real Estate Tax Director" },
-  { initials: "DA", name: "Dan Austin",        title: "Senior Manager" },
-  { initials: "KD", name: "Karen Delatorre",   title: "Office Manager" },
-  { initials: "AD", name: "Amber DeGroot",     title: "Senior Manager" },
-  { initials: "HH", name: "Horatiu Hosu",      title: "Director" },
-  { initials: "NL", name: "Nick Lassak",       title: "Senior Associate" },
-  { initials: "MP", name: "Mihir Patel",       title: "Senior Manager" },
-  { initials: "DR", name: "David Rodriguez",   title: "Senior Associate" },
-  { initials: "BT", name: "Bibhuti Thapa",     title: "Tax Associate" },
+  { initials: "MA", name: "Margaret A.", title: "Real Estate Tax Director" },
+  { initials: "DA", name: "Dan A.",       title: "Senior Manager" },
+  { initials: "KD", name: "Karen D.",     title: "Office Manager" },
+  { initials: "AD", name: "Amber D.",     title: "Senior Manager" },
+  { initials: "HH", name: "Horatiu H.",   title: "Director" },
+  { initials: "NL", name: "Nick L.",      title: "Senior Associate" },
+  { initials: "MP", name: "Mihir P.",     title: "Senior Manager" },
+  { initials: "DR", name: "David R.",     title: "Senior Associate" },
+  { initials: "BT", name: "Bibhuti T.",   title: "Tax Associate" },
 ];
 
 function TeamCard({
@@ -91,22 +91,11 @@ function TeamCard({
             '"Helvetica Neue", Helvetica, Arial, sans-serif',
           fontSize: "0.78rem",
           color: "rgba(29,29,27,0.45)",
-          marginBottom: "1rem",
           lineHeight: 1.4,
         }}
       >
         {title}
       </p>
-      <span
-        style={{
-          fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-          fontWeight: 500,
-          fontSize: "0.78rem",
-          color: "#00A7E1",
-        }}
-      >
-        Read Bio →
-      </span>
     </div>
   );
 }

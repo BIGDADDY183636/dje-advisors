@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 const navLinks = [
+  { label: "Home",     href: "/" },
   { label: "About",    href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Team",     href: "/team" },
   { label: "Contact",  href: "/contact" },
 ];
 
@@ -23,7 +23,7 @@ export default function Footer() {
             <p className="font-sans text-[0.82rem] text-white/50 leading-relaxed">
               Independent tax, accounting, and advisory.
               <br />
-              Offices in Chicago &amp; Glenview.
+              Chicago &amp; Glenview, IL
             </p>
           </div>
 
@@ -53,19 +53,22 @@ export default function Footer() {
             </p>
             <div className="font-sans text-[0.82rem] space-y-2 text-white/50">
               <p>Chicago &amp; Glenview, IL</p>
-              <a
-                href="mailto:hello@djeadvisors.com"
+              <Link
+                href="/contact"
                 className="block text-cyan hover:text-cyan/80 transition-colors duration-150"
               >
-                hello@djeadvisors.com
-              </a>
+                Send us a message →
+              </Link>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-white/[0.07] pt-7">
+        <div className="border-t border-white/[0.07] pt-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <p className="font-sans text-[0.6rem] text-white/20 tracking-wide">
             © 2026 DJE Advisors &ensp;·&ensp; Chicago &amp; Glenview, IL
+          </p>
+          <p className="font-sans text-[0.6rem] text-white/15 tracking-wide">
+            Concept build for JBAR Design Studio. Demo only.
           </p>
         </div>
       </div>

@@ -171,37 +171,17 @@ export default function ContactPage() {
 
               <div>
                 <p style={infoLabelStyle}>Email</p>
-                <a
-                  href="mailto:david@djeadvisors.com"
-                  style={{ ...infoValueStyle, color: "#1D1D1B", textDecoration: "none" }}
-                  onMouseOver={(e) => (e.currentTarget.style.color = "#00A7E1")}
-                  onMouseOut={(e) => (e.currentTarget.style.color = "#1D1D1B")}
-                >
-                  david@djeadvisors.com
-                </a>
-              </div>
-
-              <div>
-                <p style={infoLabelStyle}>Phone</p>
-                <p style={infoValueStyle}>(312) 324-0354</p>
+                <p style={infoValueStyle}>Use the form to the right</p>
               </div>
 
               <div>
                 <p style={infoLabelStyle}>Chicago Office</p>
-                <p style={infoValueStyle}>
-                  2155 W Roscoe Street, Suite 1-South
-                  <br />
-                  Chicago, IL 60618
-                </p>
+                <p style={infoValueStyle}>Chicago, IL</p>
               </div>
 
               <div>
                 <p style={infoLabelStyle}>Glenview (Satellite)</p>
-                <p style={infoValueStyle}>
-                  2700 Patriot Boulevard, Suite 140
-                  <br />
-                  Glenview, IL 60026
-                </p>
+                <p style={infoValueStyle}>Glenview, IL</p>
               </div>
 
               <div>
@@ -333,19 +313,9 @@ export default function ContactPage() {
               <p style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "1.05rem", color: "#1D1D1B", marginBottom: "0.5rem" }}>
                 Chicago
               </p>
-              <p style={{ fontFamily: SANS, fontSize: "0.88rem", color: "rgba(29,29,27,0.6)", lineHeight: 1.6, marginBottom: "1.25rem" }}>
-                2155 W Roscoe Street, Suite 1-South
-                <br />
-                Chicago, IL 60618
+              <p style={{ fontFamily: SANS, fontSize: "0.88rem", color: "rgba(29,29,27,0.6)", lineHeight: 1.6 }}>
+                Chicago, IL
               </p>
-              <a
-                href="https://maps.google.com/?q=2155+W+Roscoe+Street+Chicago+IL+60618"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ fontFamily: SANS, fontWeight: 500, fontSize: "0.82rem", color: "#00A7E1", textDecoration: "none" }}
-              >
-                Get Directions →
-              </a>
             </div>
 
             {/* Glenview */}
@@ -376,72 +346,15 @@ export default function ContactPage() {
               <p style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "1.05rem", color: "#1D1D1B", marginBottom: "0.5rem" }}>
                 Glenview <span style={{ fontFamily: SANS, fontWeight: 400, fontSize: "0.78rem", color: "rgba(29,29,27,0.4)" }}>(Satellite)</span>
               </p>
-              <p style={{ fontFamily: SANS, fontSize: "0.88rem", color: "rgba(29,29,27,0.6)", lineHeight: 1.6, marginBottom: "1.25rem" }}>
-                2700 Patriot Boulevard, Suite 140
-                <br />
-                Glenview, IL 60026
+              <p style={{ fontFamily: SANS, fontSize: "0.88rem", color: "rgba(29,29,27,0.6)", lineHeight: 1.6 }}>
+                Glenview, IL
               </p>
-              <a
-                href="https://maps.google.com/?q=2700+Patriot+Blvd+Glenview+IL+60026"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ fontFamily: SANS, fontWeight: 500, fontSize: "0.82rem", color: "#00A7E1", textDecoration: "none" }}
-              >
-                Get Directions →
-              </a>
             </div>
 
           </div>
         </div>
       </section>
 
-      {/* ── 4. Bottom CTA ── */}
-      <section
-        className="py-20 px-6"
-        style={{ backgroundColor: "#1D1D1B" }}
-      >
-        <div className="max-w-2xl mx-auto text-center">
-          <h2
-            style={{
-              fontFamily: DISPLAY,
-              fontWeight: 700,
-              fontSize: "clamp(2rem, 4vw, 3rem)",
-              color: "#ffffff",
-              lineHeight: 1.2,
-              marginBottom: "1rem",
-            }}
-          >
-            Prefer a Call?
-          </h2>
-          <p
-            style={{
-              fontFamily: SANS,
-              fontSize: "0.95rem",
-              color: "rgba(255,255,255,0.5)",
-              lineHeight: 1.7,
-              marginBottom: "2.25rem",
-            }}
-          >
-            Reach out by phone and we&apos;ll get you scheduled.
-          </p>
-          <a
-            href="tel:+13123240354"
-            style={{
-              display: "inline-block",
-              backgroundColor: "#00A7E1",
-              color: "#ffffff",
-              fontFamily: SANS,
-              fontWeight: 600,
-              fontSize: "1rem",
-              padding: "1rem 2.5rem",
-              borderRadius: "0.125rem",
-              textDecoration: "none",
-            }}
-          >
-            Call (312) 324-0354
-          </a>
-        </div>
-      </section>
 
     </main>
   );
