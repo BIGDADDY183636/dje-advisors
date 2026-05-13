@@ -5,7 +5,7 @@ import HeroScrollEffect from "@/components/HeroScrollEffect";
 import RevealSection from "@/components/RevealSection";
 
 export const metadata: Metadata = {
-  title: "DJE Advisors — Tax, Accounting & Advisory",
+  title: { absolute: "DJE Advisors — Tax, Accounting & Advisory" },
 };
 
 const DISPLAY =

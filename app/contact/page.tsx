@@ -3,7 +3,7 @@ import type { ReactNode, CSSProperties } from "react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Contact — DJE Advisors",
+  title: "Contact",
   description:
     "Get in touch with DJE Advisors. We respond within one business day.",
 };
